@@ -1,3 +1,7 @@
+
+
+
+
 $('#singlebutton').on('click', function() {
 
  var inputTable = $('#selectTable :selected').val();
