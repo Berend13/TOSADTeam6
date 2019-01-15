@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-    <!-- <Resource name="jdbc/PostgresDS" url="${DB_URL}"
-        driverClassName="org.postgresql.Driver" auth="Container"
-        type="javax.sql.DataSource" />
-</Context> -->
-
-	<Resource name="jdbc/PostgresDS"
-		url="jdbc:postgresql://ec2-79-125-110-209.eu-west-1.compute.amazonaws.com"
-		driverClassName="org.postgresql.Driver" auth="Container"
-		type="javax.sql.DataSource" username="lnqiartrrjsbnz" password="2f56ca08d97404bcbd704e5b645a1b99f730f816096fbb10c0de6386389c366d"/>
-</Context>
+	<Resource name="jdbc/oracle"
+		url="jdbc:oracle://ondora04.hu.nl:8521/educ31"
+		driverClassName="org.oracle.Driver" auth="Container"
+		type="javax.sql.DataSource" username="cursist" password=" cursist0191"/>
+	</Context>
