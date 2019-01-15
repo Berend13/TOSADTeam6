@@ -14,7 +14,7 @@ public class BaseDao {
                 final String DATABASE_URL_PROP = System.getenv("DATABASE_URL");
                 if (DATABASE_URL_PROP != null) { // de applicatie draait op Heroku
                     URI dbUri = new URI(DATABASE_URL_PROP);
-                    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
+                    String dbUrl = "jdbc:oracle://" + dbUri.getHost() + dbUri.getPath();
                     BasicDataSource pool = new BasicDataSource();
                     if (dbUri.getUserInfo() != null) {
                         pool.setUsername(dbUri.getUserInfo().split(":")[0]);
