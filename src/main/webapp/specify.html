@@ -29,7 +29,7 @@
                 <select id="selectCategory" name="selectbasic" class="form-control">
                     <option disabled selected value> -- select an option -- </option>
                     <option value="SDCR">Static data constraint rules</option>
-                    <option value="DDCR">Dynamic data constraint rules</option>
+                    <!--<option value="DDCR">Dynamic data constraint rules</option>-->
                 </select>
             </div>
         </div>
@@ -37,10 +37,12 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="selectBRT">select business Rule Type</label>
             <div class="col-md-4">
-                <select id="selectBRT" name="selectbasic" class="form-control">
-                    <option disabled selected value> -- select an option -- </option>
-                    <option value="ARR">Attribute range rule</option>
-                    <option value="ACR">Attribute Compare rule</option>
+                <select id="selectBRT" name="selectbasic" class="form-control" disabled="disabled">
+                    <option data-option = 'SDCR' disabled selected value> -- select an option -- </option>
+                    <!--<option data-option = 'DDCR' disabled selected value> &#45;&#45; select an option &#45;&#45; </option>-->
+                    <option data-option ='SDCR' value="ARR">Attribute range rule</option>
+                    <!--<option data-option ='SDCR' value="ACR">Attribute Compare rule</option>-->
+                    <!--<option data-option ='DDCR' value="MR">Modify rule</option>-->
                 </select>
             </div>
         </div>
@@ -48,7 +50,7 @@
     <!-- Button -->
     <div class="form-group">
         <div class="col-md-4">
-            <a class="btn btn-primary" href="create.html" role="button">create</a>
+            <a class="btn btn-primary" id="toCreate" href="create.html" role="button">create</a>
         </div>
     </div>
 
@@ -63,6 +65,7 @@
 <!-- Custom and plugin javascript -->
 <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
 <script src="js/functions.js"></script>
+<script>specifyFunction(); sendBRT();</script>
 <!-- Custom and plugin javascript -->
 </body>
 </html>
