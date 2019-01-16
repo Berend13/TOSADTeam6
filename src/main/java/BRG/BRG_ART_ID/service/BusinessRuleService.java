@@ -33,8 +33,8 @@ public class BusinessRuleService {
 	@POST
 	@Path("/new")
 	@Produces("application/json")
-	public Response newBusinessRule(@FormParam("BusinessFunction") String BusinessFunction, @FormParam("BusinessName") String BusinessName, @FormParam("BusinessTable") String BusinessTable,
-		@FormParam("BusinessColumn") String BusinessColumn, @FormParam("BusinessValue1") String BusinessValue1, @FormParam("BusinessRule") String BusinessRule, @FormParam("BusinessValue2") String BusinessValue2, @FormParam("BusinessError") String BusinessError) throws SQLException {
+	public Response saveBusinessRule(@FormParam("BusinessFunction") String BusinessFunction, @FormParam("BusinessName") String BusinessName, @FormParam("BusinessTable") String BusinessTable,
+		@FormParam("BusinessColumn") String BusinessColumn, @FormParam("BusinessValue1") int BusinessValue1, @FormParam("BusinessRule") String BusinessRule, @FormParam("BusinessValue2") int BusinessValue2, @FormParam("BusinessError") String BusinessError) throws SQLException {
 
 		BusinessRuleDaoImpl BusinessRuleServiceInst = new BusinessRuleDaoImpl();
 		Boolean result = null;

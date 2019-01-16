@@ -34,7 +34,7 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		return rules;
 	}
 
-	public boolean saveBusinessRule(String BusinessFunction, String BusinessName, String BusinessTable, String BusinessColumn, String BusinessValue1, String BusinessRule, String BusinessValue2, String BusinessError) throws SQLException {
+	public boolean saveBusinessRule(String BusinessFunction, String BusinessName, String BusinessTable, String BusinessColumn, int BusinessValue1, String BusinessRule, int BusinessValue2, String BusinessError) throws SQLException {
 		conn = BaseDao.getConnection();
 		System.out.println(BusinessFunction);
 		System.out.println(BusinessName);
@@ -50,16 +50,16 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		statement.setString(2, BusinessName);
 		statement.setString(3, BusinessTable);
 		statement.setString(4, BusinessColumn);
-		statement.setString(5, BusinessValue1);
+		statement.setInt(5, BusinessValue1);
 		statement.setString(6, BusinessRule);
-		statement.setString(7, BusinessValue2);
+		statement.setInt(7, BusinessValue2);
 		statement.setString(8, BusinessError);
 		statement.registerOutParameter(1,Types.VARCHAR);
 
 
 		System.out.println(statement.toString());
-		boolean executeFunction = statement.execute();
-		if (executeFunction == true) {
+		int executeFunction = statement.executeUpdate();
+		if (executeFunction > 0) {
 			System.out.println("Business rule aangemaakt");
 		}
 		conn.close();		
