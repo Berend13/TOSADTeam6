@@ -1,23 +1,78 @@
+function sendBRT() {
+ $('#toCreate').on('click', function () {
+  $('#selectBRT').find("option:selected").text();
+  selectedText = $('#selectBRT').find("option:selected").val();
+  sessionStorage.setItem('BRT' , selectedText);
 
+ });
+}
 
+function specifyFunction() {
+ $("#selectCategory").change(function () {
+  if (typeof $(this).data('options') === "undefined") {
+   $(this).data('options', $('#selectBRT option').clone());
+  }
+  var id = $(this).val();
+  var options = $(this).data('options').filter('[data-option=' + id + ']');
+  $('#selectBRT').html(options);
+  $('#selectBRT').selectpicker('refresh');
+ });
 
+ $('#selectCategory').click(function () {
+  $("#selectBRT").prop("disabled", false);
+ });
+}
 
-$('#singlebutton').on('click', function() {
+function disableDropdown(){
+ $('#selectTable').click(function () {
+  $("#selectColumn").prop("disabled", false);
+ });
+ $('#selectColumn').click(function () {
+  $("#selectRule").prop("disabled", false);
+ });
+}
 
- var inputTable = $('#selectTable :selected').val();
- var inputColumn = $('#selectColumn :selected').val();
- var inputValue1 = $('#textInput1').val();
- var inputValue2 = $('#textInput2').val();
- var inputCategory = $('#selectCategory :selected').val();
- var inputBRT = $('#selectBRT :selected').val();
- var inputRule = $('#selectRule :selected').val();
+function noSpace(){
+ var k = event ? event.which : window.event.keyCode;
+ if (k == 32) return false;
+}
 
+function postARR() {
+ $('#sendbutton').on('click', function () {
+  event.preventDefault();
 
- localStorage.setItem("table", inputTable);
- localStorage.setItem("column", inputColumn);
- localStorage.setItem("category", inputCategory);
- localStorage.setItem("BRT", inputBRT);
- localStorage.setItem("value 1", inputValue1);
- localStorage.setItem("Rule", inputRule);
- localStorage.setItem("value 2", inputValue2);
-});
+  var inputName = $('#selectName').val();
+  var inputTable = $('#selectTable :selected').val();
+  var inputColumn = $('#selectColumn :selected').val();
+  var inputValue1 = $('#value1Input').val();
+  var inputRule = $('#selectRule :selected').val();
+  var inputValue2 = $('#value2Input').val();
+  var inputError = $('#errorInput').val();
+  var BRT = sessionStorage.getItem('BRT');
+
+  $.ajax({
+   url: 'api/businessrule/new',
+   type: 'POST',
+   data: {
+    BusinessFunction : BRT,
+    BusinessName: inputName,
+    BusinessTable: inputTable,
+    BusinessColumn: inputColumn,
+    BusinessValue1: inputValue1,
+    BusinessRule: inputRule,
+    BusinessValue2: inputValue2,
+    BusinessError: inputError
+   }
+  })
+      .done(function () {
+       console.log("success");
+      })
+      .fail(function () {
+       console.log("error");
+      })
+      .always(function () {
+       console.log("complete");
+      });
+
+ });
+}
