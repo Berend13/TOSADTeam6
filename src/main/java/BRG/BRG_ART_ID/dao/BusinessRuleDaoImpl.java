@@ -34,7 +34,7 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		return rules;
 	}
 
-	public boolean saveBusinessRule(String BusinessFunction, String BusinessName, String BusinessTable, String BusinessColumn, int BusinessValue1, String BusinessRule, int BusinessValue2, String BusinessError) throws SQLException {
+	public boolean saveBusinessRule(String BusinessFunction, String BusinessName, String BusinessTable, String BusinessColumn, String BusinessValue1, String BusinessRule, String BusinessValue2, String BusinessError) throws SQLException {
 		conn = BaseDao.getConnection();
 		System.out.println(BusinessFunction);
 		System.out.println(BusinessName);
@@ -45,19 +45,19 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		System.out.println(BusinessValue2);
 		System.out.println(BusinessError);
 
-		String query = "begin execute immediate ?(?, ?, ?, ?, ?, ?, ?); end;";
-		PreparedStatement statement = conn.prepareStatement(query);
-		statement.setString(1, BusinessFunction);
+		String query = "{? = call ARR(?, ?, ?, ?, ?, ?, ?)}";
+		CallableStatement statement = conn.prepareCall(query);
 		statement.setString(2, BusinessName);
 		statement.setString(3, BusinessTable);
 		statement.setString(4, BusinessColumn);
-		statement.setInt(5, BusinessValue1);
+		statement.setString(5, BusinessValue1);
 		statement.setString(6, BusinessRule);
-		statement.setInt(7, BusinessValue2);
+		statement.setString(7, BusinessValue2);
 		statement.setString(8, BusinessError);
+		statement.registerOutParameter(1,Types.VARCHAR);
+
 
 		System.out.println(statement.toString());
-
 		boolean executeFunction = statement.execute();
 		if (executeFunction == true) {
 			System.out.println("Business rule aangemaakt");
