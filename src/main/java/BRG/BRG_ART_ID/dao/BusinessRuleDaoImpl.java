@@ -34,7 +34,7 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 
 	public boolean saveBusinessRule(String BusinessFunction, String BusinessName, String BusinessTable, String BusinessColumn, int BusinessValue1, String BusinessRule, int BusinessValue2, String BusinessError) throws SQLException {
 		conn = BaseDao.getConnection();
-		String query = "begin execute immediate ?(?, ?, ?, ?, ?, ?, ?, ?) end";
+		String query = "begin execute immediate ?(?, ?, ?, ?, ?, ?, ?) end";
 
 		PreparedStatement statement = conn.prepareStatement(query);
 		statement.setString(1, BusinessFunction);
