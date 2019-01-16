@@ -1,46 +1,27 @@
 package BRG.BRG_ART_ID.dao;
 import java.net.URI;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
+
 public class BaseDao {
-    private static DataSource connectionPool;
+  private static final String DB_DRIV = "oracle.jdbc.driver.OracleDriver";
+  private static final String DB_URL = "jdbc:oracle:thin:@ondora04.hu.nl:8521/educ31";
+  private static final String DB_USER = "cursist";
+  private static final String DB_PASS = "cursist0191";
+  private static Connection conn;
 
-    public BaseDao() {
-        if (connectionPool == null) {
-            try {
-                final String DATABASE_URL_PROP = System.getenv("DATABASE_URL");
-                if (DATABASE_URL_PROP != null) { // de applicatie draait op Heroku
-                    URI dbUri = new URI(DATABASE_URL_PROP);
-                    String dbUrl = "jdbc:oracle://" + dbUri.getHost() + dbUri.getPath();
-                    BasicDataSource pool = new BasicDataSource();
-                    if (dbUri.getUserInfo() != null) {
-                        pool.setUsername(dbUri.getUserInfo().split(":")[0]);
-                        pool.setPassword(dbUri.getUserInfo().split(":")[1]);
-                    }
-                    pool.setMaxIdle(4); // maximaal 4 ongebruikte connecties
-                    pool.setMaxTotal(20); // maximaal 20 connecties in Heroku
-                    pool.setDriverClassName("org.postgresql.Driver");
-                    pool.setUrl(dbUrl);
-                    pool.setInitialSize(1);
-                    connectionPool = pool;
-                } else { // de applicatie draait lokaal
-                    InitialContext ic = new InitialContext();
-                    connectionPool = (DataSource) ic.lookup("java:comp/env/jdbc/PostgresDS");
-                }
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
 
-    protected final static Connection getConnection() {
-        try {
-            return connectionPool.getConnection();
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
-    }
-}
+  protected static Connection getConnection() throws SQLException{
+      return DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+  }
+
+  public void closeConnection(){
+        // close connection volgende opdracht
+  }
+} 
