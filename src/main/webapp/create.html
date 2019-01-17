@@ -22,14 +22,14 @@
 
 
         <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="selectName">Trigger name</label>
+        <div class="form-group" id="divName">
+            <label class="col-md-4 control-label" for="selectName" id="labelName">Trigger name</label>
             <div class="col-md-4">
                 <input id="selectName" name="selectName" type="text" placeholder="..." class="form-control input-md" onkeypress="return noSpace(event) ">
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="divTable1">
             <label class="col-md-4 control-label" for="selectTable">Table</label>
             <div class="col-md-4">
                 <select id="selectTable" name="selectbasic" class="form-control">
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="divColumn1">
             <label class="col-md-4 control-label" for="selectColumn">Column</label>
             <div class="col-md-4">
                 <select id="selectColumn" name="selectColumn" class="form-control" disabled="disabled">
@@ -53,14 +53,14 @@
         </div>
 
         <!-- Text input-->
-        <div class="form-group">
+        <div class="form-group" id="divValue1">
             <label class="col-md-4 control-label" for="value1Input">First value</label>
             <div class="col-md-4">
                 <input id="value1Input" name="value1Input" type="number" placeholder="..." class="form-control input-md">
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="divRule">
             <label class="col-md-4 control-label" for="selectRule">Rule</label>
             <div class="col-md-4">
                 <select id="selectRule" name="selectbasic" class="form-control" disabled="disabled">
@@ -72,14 +72,14 @@
         </div>
 
         <!-- Text input-->
-        <div class="form-group">
+        <div class="form-group" id="divValue2">
             <label class="col-md-4 control-label" for="value2Input">Second value</label>
             <div class="col-md-4">
                 <input id="value2Input" name="value2Input" type="number" placeholder="..." class="form-control input-md">
             </div>
         </div>
 
-    <div class="form-group">
+    <div class="form-group" id="divError">
         <label class="col-md-4 control-label" for="errorInput">Error message</label>
         <div class="col-md-4">
             <textarea id="errorInput" name="errorInput" class="form-control" rows="5" placeholder="Error message..."></textarea>
@@ -103,7 +103,7 @@
 <!-- Custom and plugin javascript -->
 <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
 <script src="js/functions.js"></script>
-<script>disableDropdown(); postARR(); noSpace(event);</script>
+<script>disableDropdown(); postARR(); showHide(); noSpace(event);</script>
 <!-- Custom and plugin javascript -->
 </body>
 </html>

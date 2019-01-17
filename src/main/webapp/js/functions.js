@@ -3,9 +3,10 @@ function sendBRT() {
   $('#selectBRT').find("option:selected").text();
   selectedText = $('#selectBRT').find("option:selected").val();
   sessionStorage.setItem('BRT' , selectedText);
-
  });
 }
+
+whatBRT = sessionStorage.getItem('BRT');
 
 function specifyFunction() {
  $("#selectCategory").change(function () {
@@ -32,7 +33,7 @@ function disableDropdown(){
  });
 }
 
-function noSpace(){
+function noSpace(event){
  var k = event ? event.which : window.event.keyCode;
  if (k == 32) return false;
 }
@@ -75,4 +76,16 @@ function postARR() {
       });
 
  });
+}
+
+
+
+function showHide() {
+ if (whatBRT == 'ACR') {
+  console.log('YEET');
+  //hide div
+  $("#divName").addClass('d-none');
+ // show div
+ //  $("#divName").removeClass('d-none');
+ }
 }
