@@ -12,8 +12,8 @@ import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 public class BaseDao {
   private static final String DB_DRIV = "oracle.jdbc.driver.OracleDriver";
   private static final String DB_URL = "jdbc:oracle:thin://@ondora04.hu.nl:8521/educ31";
-  private static final String DB_USER = "AppUserJava";
-  private static final String DB_PASS = "AppUser1234";
+  private static final String DB_USER = "cursist";
+  private static final String DB_PASS = "cursist0191";
   private static Connection conn;
 
 
