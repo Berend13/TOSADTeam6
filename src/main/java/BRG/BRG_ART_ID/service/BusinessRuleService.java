@@ -26,10 +26,12 @@ import javax.ws.rs.core.Response;
 import java.util.*;
 
 import BRG.BRG_ART_ID.dao.BusinessRuleDaoImpl;
+import BRG.BRG_ART_ID.domain.BusinessRule;
 
 @Path("/businessrule")
 public class BusinessRuleService {
 
+	// Nieuwe business rule plaatsen
 	@POST
 	@Path("/new")
 	@Produces("application/json")
@@ -48,4 +50,26 @@ public class BusinessRuleService {
 			return null;
 		}
 	}
+	// create new business rule
+
+	// get all business rules
+	@GET
+	@Path("/all")
+	@Produces("application/json")
+	public String getAllBusinessRules() throws SQLException {
+		BusinessRuleDaoImpl BusinessRuleServiceInst = new BusinessRuleDaoImpl();
+
+		JsonArrayBuilder jab = Json.createArrayBuilder();
+
+		for (BusinessRule rule : BusinessRuleServiceInst.findAll()){
+			JsonObjectBuilder job = Json.createObjectBuilder();
+			job.add("ID", rule.getID());
+			job.add("name", rule.getName());
+			job.add("code", rule.getCode());
+		}
+
+		JsonArray array = jab.build();
+		return array.toString();
+	}
+	// get all business rules
 }

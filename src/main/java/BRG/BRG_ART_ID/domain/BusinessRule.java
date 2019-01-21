@@ -4,21 +4,18 @@ public class BusinessRule {
 	private int ID;
 	private String name;
 	private String code;
-	private String errorMessage;
 	
 	
-	public BusinessRule(int ID, String name, String code, String errorMessage) {
+	public BusinessRule(int ID, String name, String code) {
 		ID = ID;
 		this.name = name;
 		this.code = code;
-		this.errorMessage = errorMessage;
 	}
 	
 	
-	public BusinessRule(String name, String code, String errorMessage) {
+	public BusinessRule(String name, String code) {
 		this.name = name;
 		this.code = code;
-		this.errorMessage = errorMessage;
 	}
 	
 	public int getID() {
@@ -43,16 +40,6 @@ public class BusinessRule {
 	
 	public void setCode(String code) {
 		this.code = code;
-	}
-
-
-	public String getErrorMessage() {
-		return errorMessage;
-	}
-
-
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
 	}
 	
 	
