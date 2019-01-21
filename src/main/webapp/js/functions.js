@@ -25,11 +25,16 @@ function specifyFunction() {
 }
 
 function disableDropdown(){
- $('#selectTable').click(function () {
-  $("#selectColumn").prop("disabled", false);
+ $('#selectTable1').click(function () {
+  $("#selectColumn1").prop("disabled", false);
  });
- $('#selectColumn').click(function () {
-  $("#selectRule").prop("disabled", false);
+ $('#selectColumn1').click(function () {
+  $("#selectRuleBetween").prop("disabled", false);
+  $("#selectRuleCompare").prop("disabled", false);
+ });
+ $('#selectRuleCompare').click(function () {
+  $("#selectTable2").prop("disabled", false);
+  $("#selectColumn2").prop("disabled", false);
  });
 }
 
@@ -81,11 +86,29 @@ function postARR() {
 
 
 function showHide() {
- if (whatBRT == 'ACR') {
-  console.log('YEET');
-  //hide div
-  $("#divName").addClass('d-none');
- // show div
- //  $("#divName").removeClass('d-none');
+ if (whatBRT == 'ARR') {
+  $("#divTable1").removeClass('d-none');
+  $("#divColumn1").removeClass('d-none');
+  $("#divValue1").removeClass('d-none');
+  $("#divRuleBetween").removeClass('d-none');
+  $("#divValue2").removeClass('d-none');
+ }else if (whatBRT =='ACR'){
+  $("#divTable1").removeClass('d-none');
+  $("#divColumn1").removeClass('d-none');
+  $("#divRuleCompare").removeClass('d-none');
+  $("#divValue2").removeClass('d-none');
+
+ }else if (whatBRT =='TCR'){
+  $("#divTable1").removeClass('d-none');
+  $("#divColumn1").removeClass('d-none');
+  $("#divRuleCompare").removeClass('d-none');
+  $("#divColumn2").removeClass('d-none');
+
+ }else if (whatBRT =='IECR'){
+  $("#divTable1").removeClass('d-none');
+  $("#divColumn1").removeClass('d-none');
+  $("#divRuleCompare").removeClass('d-none');
+  $("#divTable2").removeClass('d-none');
+  $("#divColumn2").removeClass('d-none');
  }
 }

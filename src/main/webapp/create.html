@@ -29,10 +29,10 @@
             </div>
         </div>
 
-        <div class="form-group" id="divTable1">
-            <label class="col-md-4 control-label" for="selectTable">Table</label>
+        <div class="form-group d-none" id="divTable1">
+            <label class="col-md-4 control-label" for="selectTable1">Table 1</label>
             <div class="col-md-4">
-                <select id="selectTable" name="selectbasic" class="form-control">
+                <select id="selectTable1" name="selectTable1" class="form-control">
                     <option disabled selected value> -- select an option -- </option>
                     <option value="DEPT">DEPT</option>
 
@@ -40,10 +40,10 @@
             </div>
         </div>
 
-        <div class="form-group" id="divColumn1">
-            <label class="col-md-4 control-label" for="selectColumn">Column</label>
+        <div class="form-group d-none" id="divColumn1">
+            <label class="col-md-4 control-label" for="selectColumn1">Column 1</label>
             <div class="col-md-4">
-                <select id="selectColumn" name="selectColumn" class="form-control" disabled="disabled">
+                <select id="selectColumn1" name="selectColumn1" class="form-control" disabled="disabled">
                     <option disabled selected value> -- select an option -- </option>
                     <option value="DEPTNO">DEPTNO</option>
                     <option value="DNAME" disabled >DNAME</option>
@@ -53,17 +53,17 @@
         </div>
 
         <!-- Text input-->
-        <div class="form-group" id="divValue1">
+        <div class="form-group d-none" id="divValue1">
             <label class="col-md-4 control-label" for="value1Input">First value</label>
             <div class="col-md-4">
                 <input id="value1Input" name="value1Input" type="number" placeholder="..." class="form-control input-md">
             </div>
         </div>
 
-        <div class="form-group" id="divRule">
-            <label class="col-md-4 control-label" for="selectRule">Rule</label>
+        <div class="form-group d-none" id="divRuleBetween">
+            <label class="col-md-4 control-label" for="selectRuleBetween">Rule</label>
             <div class="col-md-4">
-                <select id="selectRule" name="selectbasic" class="form-control" disabled="disabled">
+                <select id="selectRuleBetween" name="selectbasic" class="form-control" disabled="disabled">
                     <option disabled selected value> -- select an option -- </option>
                     <option value="Between">Between</option>
                     <option value="Not between">Not between</option>
@@ -71,8 +71,46 @@
             </div>
         </div>
 
+    <div class="form-group d-none" id="divRuleCompare" >
+        <label class="col-md-4 control-label" for="selectRuleCompare">Rule</label>
+        <div class="col-md-4">
+            <select id="selectRuleCompare" name="selectbasic" class="form-control" disabled="disabled">
+                <option disabled selected value> -- select an option -- </option>
+                <option value=">">Greater than</option>
+                <option value="<">Smaller than</option>
+                <option value="=">equal to</option>
+                <option value="!=">unequal to</option>
+                <option value=">=">greater or equal to</option>
+                <option value="<=">smaller or equal to</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group d-none" id="divTable2">
+        <label class="col-md-4 control-label" for="selectTable2">Table 2</label>
+        <div class="col-md-4">
+            <select id="selectTable2" name="selectbasic" class="form-control" disabled="disabled">
+                <option disabled selected value> -- select an option -- </option>
+                <option value="DEPT">DEPT</option>
+
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group d-none" id="divColumn2">
+        <label class="col-md-4 control-label" for="selectColumn2">Column 2</label>
+        <div class="col-md-4">
+            <select id="selectColumn2" name="selectColumn2" class="form-control" disabled="disabled">
+                <option disabled selected value> -- select an option -- </option>
+                <option value="DEPTNO">DEPTNO</option>
+                <option value="DNAME" disabled >DNAME</option>
+                <option value="LOC" disabled>LOC</option>
+            </select>
+        </div>
+    </div>
+
         <!-- Text input-->
-        <div class="form-group" id="divValue2">
+        <div class="form-group d-none" id="divValue2">
             <label class="col-md-4 control-label" for="value2Input">Second value</label>
             <div class="col-md-4">
                 <input id="value2Input" name="value2Input" type="number" placeholder="..." class="form-control input-md">
