@@ -112,3 +112,23 @@ function showHide() {
   $("#divColumn2").removeClass('d-none');
  }
 }
+
+
+function getAllRules() {
+ $(document).ready(function () {
+  $('#businessRuleTable').DataTable();
+  $.ajax({
+   url: 'api/businessrule/all',
+   type: 'GET',
+   success: function(rules){
+    console.log(rules);
+    $.each(rules, function(index, rule) {
+     var table_tr = "<tr><td>"  +rule.id+   "</td><td>"  +rule.name+ "</td><td>"  +rule.code+ "</td></tr>";
+
+     // append to table
+     $(table_tr).appendTo(".tbodyBusinessRuleTable");
+    });
+   }
+  });
+ });
+}
