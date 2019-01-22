@@ -66,6 +66,8 @@ public class BusinessRuleService {
 			job.add("ID", rule.getID());
 			job.add("name", rule.getName());
 			job.add("code", rule.getCode());
+
+			jab.add(job);
 		}
 
 		JsonArray array = jab.build();

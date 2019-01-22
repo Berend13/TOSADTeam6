@@ -17,14 +17,14 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		List<BusinessRule> rules = new ArrayList<BusinessRule>();
 		conn = BaseDao.getConnection();
 
-		String query = "SELECT * FROM BUSINESS_RULE";
+		String query = "SELECT * FROM BUSINESS_RULE ORDER BY id DESC";
 		Statement statement = conn.createStatement();
 		ResultSet result = statement.executeQuery(query);
 		
 		while (result.next()) {
-			int ID = result.getInt("id");
-			String name = result.getString("name");
-			String code = result.getString("code");
+			int ID = result.getInt("ID");
+			String name = result.getString("NAME");
+			String code = result.getString("CODE");
 			
 			BusinessRule rule = new BusinessRule(ID, name, code);
 			rules.add(rule);
