@@ -123,10 +123,10 @@ function getAllRules() {
    success: function(rules){
     console.log(rules);
     $.each(rules, function(index, rule) {
-     var table_tr = "<tr><td>"  +rule.id+   "</td><td>"  +rule.name+ "</td><td>"  +rule.code+ "</td></tr>";
+     var table_tr = "<tr><td>"  +rule.ID+   "</td><td>"  +rule.name+ "</td><td>"  +rule.code+ "</td></tr>";
 
      // append to table
-     $(table_tr).appendTo(".tbodyBusinessRuleTable");
+     $(table_tr).appendTo("#tbodyBusinessRuleTable");
     });
    }
   });
