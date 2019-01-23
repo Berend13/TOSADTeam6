@@ -116,7 +116,7 @@ function showHide() {
 
 function getAllRules() {
  $(document).ready(function () {
-  $('#businessRuleTable').DataTable();
+  $('#businessRuleTable').DataTable({searching: false, info: false});
   $.ajax({
    url: 'api/businessrule/all',
    type: 'GET',
@@ -125,10 +125,23 @@ function getAllRules() {
     $.each(rules, function(index, rule) {
      var table_tr = "<tr><td>"  +rule.ID+   "</td><td>"  +rule.name+ "</td><td>"  +rule.code+ "</td></tr>";
 
+
      // append to table
+     // $("#businessRuleTable > tbody > tr:first-child").remove();
      $(table_tr).appendTo("#tbodyBusinessRuleTable");
     });
    }
+  });
+ });
+}
+
+function searchMachine() {
+ $(document).ready(function () {
+  $("#search").on("keyup", function () {
+   var value = $(this).val().toLowerCase();
+   $("#tbodyBusinessRuleTable tr").filter(function () {
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+   });
   });
  });
 }
