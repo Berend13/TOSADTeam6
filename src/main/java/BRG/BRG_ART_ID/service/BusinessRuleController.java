@@ -29,7 +29,7 @@ import BRG.BRG_ART_ID.dao.BusinessRuleDaoImpl;
 import BRG.BRG_ART_ID.domain.BusinessRule;
 
 @Path("/businessrule")
-public class BusinessRuleService {
+public class BusinessRuleController {
 
 	// Nieuwe business rule plaatsen
 	@POST

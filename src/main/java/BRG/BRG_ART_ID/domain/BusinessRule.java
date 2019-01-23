@@ -7,7 +7,7 @@ public class BusinessRule {
 	
 	
 	public BusinessRule(int ID, String name, String code) {
-		ID = ID;
+		this.ID = ID;
 		this.name = name;
 		this.code = code;
 	}
