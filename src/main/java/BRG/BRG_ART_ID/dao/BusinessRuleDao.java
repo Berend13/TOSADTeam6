@@ -11,4 +11,6 @@ public interface BusinessRuleDao {
     public boolean saveBusinessRule(String BusinessFunction, String BusinessName, String BusinessTable, String BusinessColumn, int BusinessValue1, String BusinessRule, int BusinessValue2, String BusinessError) throws SQLException;
     public boolean update(BusinessRule rule) throws SQLException;
     public boolean delete(BusinessRule rule) throws SQLException;
+    public List getAllTables() throws SQLException;
+    public  List getAllColumns(String table) throws SQLException;
 }

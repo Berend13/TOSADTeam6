@@ -72,4 +72,43 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		// TODO Auto-generated method stub
 		return false;
 	}	
+
+	public List<String> getAllTables() throws SQLException {
+		List<String> tables = new ArrayList<String>();
+		conn = BaseDao.getConnection();
+
+		String query = "SELECT table_name  from all_tables where owner = 'CURSIST'";
+		Statement statement = conn.createStatement();
+		ResultSet result = statement.executeQuery(query);
+		
+		while (result.next()) {
+			String tableName = result.getString("table_name");
+			tables.add(tableName);
+		}
+
+		conn.close();
+		result.close();
+		return tables;
+	}
+
+	public List<String> getAllColumns(String table) throws SQLException {
+		List<String> columns = new ArrayList<String>();
+		conn = BaseDao.getConnection();
+
+		PreparedStatement statement = conn.prepareStatement("SELECT COLUMN_NAME, DATA_TYPE FROM ALL_TAB_COLUMNS WHERE TABLE_NAME = ? AND OWNER = 'CURSIST'");
+		statement.setString(1, table);  
+		ResultSet result = statement.executeQuery();
+		
+		while (result.next()) {
+			String columnName = result.getString("COLUMN_NAME");
+			String DataType = result.getString("DATA_TYPE");
+			
+			 List<String> column = new ArrayList<String>(Arrays.asList(columnName, DataType));
+			columns.addAll(column);
+		}
+		
+		conn.close();
+		result.close();
+		return columns;
+	}
 }

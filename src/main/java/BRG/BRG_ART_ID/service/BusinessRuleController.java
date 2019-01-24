@@ -74,4 +74,49 @@ public class BusinessRuleController {
 		return array.toString();
 	}
 	// get all business rules
+
+	// get all tables
+	@GET
+	@Path("/tables")
+	@Produces("application/json")
+	public String getAllTables() throws SQLException {
+		BusinessRuleDaoImpl BusinessRuleServiceInst = new BusinessRuleDaoImpl();
+
+		JsonArrayBuilder jab = Json.createArrayBuilder();
+
+		for (String table : BusinessRuleServiceInst.getAllTables()){
+			JsonObjectBuilder job = Json.createObjectBuilder();
+			job.add("tableNaam", table);
+
+			jab.add(job);
+		}
+
+		JsonArray array = jab.build();
+		return array.toString();
+	}
+	// get all tables
+
+	// get all tables
+	@GET
+	@Path("/columns/{tableNaam}")
+	@Produces("application/json")
+	public String getAllColumns(@PathParam("tableNaam") String tableNaam) throws SQLException {
+		BusinessRuleDaoImpl BusinessRuleServiceInst = new BusinessRuleDaoImpl();
+
+		JsonArrayBuilder jab = Json.createArrayBuilder();
+
+		for (String column : BusinessRuleServiceInst.getAllColumns(tableNaam)){
+			JsonObjectBuilder job = Json.createObjectBuilder();
+			job.add("column", column);
+			// for (String datatype : column){
+			// 	JsonObjectBuilder job2 = Json.createObjectBuilder();
+			// 	job2.add("datatype", datatype);
+			// }
+			jab.add(job);
+		}
+
+		JsonArray array = jab.build();
+		return array.toString();
+	}
+	// get all tables
 }
