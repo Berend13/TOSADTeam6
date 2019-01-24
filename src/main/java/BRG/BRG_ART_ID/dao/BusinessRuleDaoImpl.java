@@ -101,10 +101,9 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		
 		while (result.next()) {
 			String columnName = result.getString("COLUMN_NAME");
-			String DataType = result.getString("DATA_TYPE");
+			// String DataType = result.getString("DATA_TYPE");
 			
-			 List<String> column = new ArrayList<String>(Arrays.asList(columnName, DataType));
-			columns.addAll(column);
+			columns.add(columnName);
 		}
 		
 		conn.close();
