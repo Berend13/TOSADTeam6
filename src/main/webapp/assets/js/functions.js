@@ -64,28 +64,28 @@ function getColumns(tableName, select){
     type: 'GET'
   })
   .done(function(columnName) {
-      if ($('#selectColumn1 option').length > 1 && select == 'select1') {
-          $('#selectColumn1').empty();
-      }
-      if ($('#selectColumn2 option').length > 1 && select == 'select2') {
-          $('#selectColumn2').empty();
-      }
+    if ($('#selectColumn1 option').length > 1 && select == 'select1') {
+      $('#selectColumn1').empty();
+    }
+    if ($('#selectColumn2 option').length > 1 && select == 'select2') {
+      $('#selectColumn2').empty();
+    }
     if ($('#selectColumn1 option').length < 2 && select == 'select1') {
       $.each(columnName, function(index, name) {
-          var columnOption = "<option value=" +name.column+ ">"+name.column+"</option>";
-          $(columnOption).appendTo("#selectColumn1");
+        var columnOption = "<option value=" +name.column+ ">"+name.column+"</option>";
+        $(columnOption).appendTo("#selectColumn1");
       });
     }
     if ($('#selectColumn2 option').length < 2 && select == 'select2'){
       $.each(columnName, function(index, name) {
-          var columnOption = "<option value=" +name.column+ ">"+name.column+"</option>";
-          $(columnOption).appendTo("#selectColumn2");
+        var columnOption = "<option value=" +name.column+ ">"+name.column+"</option>";
+        $(columnOption).appendTo("#selectColumn2");
       });
     }
   });
 }
 
-function postARR() {
+function postTrigger() {
  $('#sendbutton').on('click', function () {
   event.preventDefault();
 
@@ -94,7 +94,10 @@ function postARR() {
   var inputColumn1 = $('#selectColumn1 :selected').val();
   var inputValue1 = $('#value1Input').val();
   var inputRuleBetween = $('#selectRuleBetween :selected').val();
+  var inputRuleCompare = $('#selectRuleCompare :selected').val();
   var inputValue2 = $('#value2Input').val();
+  var inputTable2 = $('#selectTable2 :selected').val();
+  var inputColumn2 = $('#selectColumn2 :selected').val();
   var inputError = $('#errorInput').val();
   var BRT = sessionStorage.getItem('BRT');
 
@@ -103,7 +106,10 @@ function postARR() {
   sessionStorage.setItem('inputColumn1' , inputColumn1);
   sessionStorage.setItem('inputValue1' , inputValue1);
   sessionStorage.setItem('inputRuleBetween' , inputRuleBetween);
+  sessionStorage.setItem('inputRuleCompare' , inputRuleCompare);
   sessionStorage.setItem('inputValue2' , inputValue2);
+  sessionStorage.setItem('inputTable2' , inputTable2);
+  sessionStorage.setItem('inputColumn2' , inputColumn2);
   sessionStorage.setItem('inputError' , inputError);
 
   $.ajax({
@@ -112,11 +118,14 @@ function postARR() {
    data: {
     BusinessFunction : BRT,
     BusinessName: inputName,
-    BusinessTable: inputTable1,
-    BusinessColumn: inputColumn1,
+    BusinessTable1: inputTable1,
+    BusinessColumn1: inputColumn1,
     BusinessValue1: inputValue1,
-    BusinessRule: inputRuleBetween,
+    BusinessRuleBetween: inputRuleBetween,
+    BusinessRuleCompare: inputRuleCompare,
     BusinessValue2: inputValue2,
+    BusinessTable2: inputTable2,
+    BusinessColumn2: inputColumn2,
     BusinessError: inputError
   }
 })
