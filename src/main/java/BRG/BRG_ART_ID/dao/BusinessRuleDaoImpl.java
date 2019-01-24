@@ -83,7 +83,10 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		
 		while (result.next()) {
 			String tableName = result.getString("table_name");
-			tables.add(tableName);
+
+			if (!tableName.contains("B_RULE_TYPE") && !tableName.contains("BUSINESS_RULE") && !tableName.equals("USERS")) {
+				tables.add(tableName);
+			}
 		}
 
 		conn.close();
