@@ -35,14 +35,15 @@ public class BusinessRuleController {
 	@POST
 	@Path("/new")
 	@Produces("application/json")
-	public Response saveBusinessRule(@FormParam("BusinessFunction") String BusinessFunction, @FormParam("BusinessName") String BusinessName, @FormParam("BusinessTable") String BusinessTable,
-		@FormParam("BusinessColumn") String BusinessColumn, @FormParam("BusinessValue1") int BusinessValue1, @FormParam("BusinessRule") String BusinessRule, @FormParam("BusinessValue2") int BusinessValue2, @FormParam("BusinessError") String BusinessError) throws SQLException {
+	public Response saveBusinessRule(@FormParam("BusinessFunction") String BusinessFunction, @FormParam("BusinessName") String BusinessName, @FormParam("BusinessTable1") String BusinessTable1,
+		@FormParam("BusinessColumn1") String BusinessColumn1, @FormParam("BusinessValue1") int BusinessValue1, @FormParam("BusinessRuleCompare") String BusinessRuleCompare, @FormParam("BusinessRuleBetween") String BusinessRuleBetween, @FormParam("BusinessValue2") int BusinessValue2, @FormParam("BusinessTable2") String BusinessTable2,
+		@FormParam("BusinessColumn2") String BusinessColumn2, @FormParam("BusinessError") String BusinessError) throws SQLException {
 
 		BusinessRuleDaoImpl BusinessRuleServiceInst = new BusinessRuleDaoImpl();
 		Boolean result = null;
 		
 
-		result = BusinessRuleServiceInst.saveBusinessRule(BusinessFunction, BusinessName, BusinessTable, BusinessColumn, BusinessValue1, BusinessRule, BusinessValue2, BusinessError);
+		result = BusinessRuleServiceInst.saveBusinessRule(BusinessFunction, BusinessName, BusinessTable1, BusinessColumn1, BusinessValue1, BusinessRuleBetween, BusinessRuleCompare, BusinessValue2, BusinessTable2, BusinessColumn2, BusinessError);
 
 		if (result == true) {
 			return Response.ok().build();

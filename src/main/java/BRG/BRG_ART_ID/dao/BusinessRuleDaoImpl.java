@@ -36,16 +36,16 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 	// get all business rules
 
 	// create new business rule
-	public boolean saveBusinessRule(String BusinessFunction, String BusinessName, String BusinessTable, String BusinessColumn, int BusinessValue1, String BusinessRule, int BusinessValue2, String BusinessError) throws SQLException {
+	public boolean saveBusinessRule(String BusinessFunction, String BusinessName, String BusinessTable1, String BusinessColumn1, int BusinessValue1, String BusinessRuleBetween, String BusinessRuleCompare, int BusinessValue2, String BusinessTable2, String BusinessColumn2, String BusinessError) throws SQLException {
 		conn = BaseDao.getConnection();
 
 		String query = "{? = call ARR(?, ?, ?, ?, ?, ?, ?)}";
 		CallableStatement statement = conn.prepareCall(query);
 		statement.setString(2, BusinessName);
-		statement.setString(3, BusinessTable);
-		statement.setString(4, BusinessColumn);
+		statement.setString(3, BusinessTable1);
+		statement.setString(4, BusinessColumn1);
 		statement.setInt(5, BusinessValue1);
-		statement.setString(6, BusinessRule);
+		statement.setString(6, BusinessRuleBetween);
 		statement.setInt(7, BusinessValue2);
 		statement.setString(8, BusinessError);
 		statement.registerOutParameter(1,Types.VARCHAR);
