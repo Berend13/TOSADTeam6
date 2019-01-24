@@ -179,8 +179,6 @@
                                             <div class="col-md-4">
                                                 <select id="selectTable2" name="selectbasic" class="form-control" disabled="disabled">
                                                     <option disabled selected value> -- select an option -- </option>
-                                                    <option value="DEPT">DEPT</option>
-
                                                 </select>
                                             </div>
                                         </div>
@@ -241,6 +239,9 @@
 <!-- Own javascript -->
 <script src="assets/js/functions.js"></script>
 
+<!-- Shared functions -->
+<script>successDangerNotification();</script>
+
 <!-- Functions -->
 <script>
     disableDropdown();
@@ -255,7 +256,6 @@
     });
     postTrigger();
     showHide();
-    successDangerNotification();
     noSpace(event);
 </script>
 

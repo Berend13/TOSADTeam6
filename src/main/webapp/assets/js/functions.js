@@ -172,6 +172,9 @@ function showHide() {
   $("#divRuleCompare").removeClass('d-none');
   $("#divTable2").removeClass('d-none');
   $("#divColumn2").removeClass('d-none');
+}else{
+ alert('Oops! Something went wrong. Maybe you did not select a business rule type.');
+ location.replace(index.html);
 }
 }
 
@@ -185,10 +188,6 @@ function getAllRules() {
     console.log(rules);
     $.each(rules, function(index, rule) {
      var table_tr = "<tr><td>"  +rule.ID+   "</td><td>"  +rule.name+ "</td><td>"  +rule.code+ "</td></tr>";
-
-
-     // append to table
-     // $("#businessRuleTable > tbody > tr:first-child").remove();
      $(table_tr).appendTo("#tbodyBusinessRuleTable");
    });
   }
