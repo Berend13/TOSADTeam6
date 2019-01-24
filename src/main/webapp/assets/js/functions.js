@@ -43,6 +43,48 @@ function noSpace(event){
  if (k == 32) return false;
 }
 
+function getTables(){
+  $.ajax({
+    url: 'api/businessrule/tables',
+    type: 'GET',
+  })
+  .done(function(tableName) {
+    $.each(tableName, function(index, name) {
+      var tableOption = "<option value=" +name.tableName+ ">"+name.tableName+"</option>";
+      $(tableOption).appendTo("#selectTable1");
+      $(tableOption).appendTo("#selectTable2");
+    });
+  });
+}
+
+function getColumns(tableName, select){
+
+  $.ajax({
+    url: 'api/businessrule/columns/'+ tableName,
+    type: 'GET'
+  })
+  .done(function(columnName) {
+      if ($('#selectColumn1 option').length > 1 && select == 'select1') {
+          $('#selectColumn1').empty();
+      }
+      if ($('#selectColumn2 option').length > 1 && select == 'select2') {
+          $('#selectColumn2').empty();
+      }
+    if ($('#selectColumn1 option').length < 2 && select == 'select1') {
+      $.each(columnName, function(index, name) {
+          var columnOption = "<option value=" +name.column+ ">"+name.column+"</option>";
+          $(columnOption).appendTo("#selectColumn1");
+      });
+    }
+    if ($('#selectColumn2 option').length < 2 && select == 'select2'){
+      $.each(columnName, function(index, name) {
+          var columnOption = "<option value=" +name.column+ ">"+name.column+"</option>";
+          $(columnOption).appendTo("#selectColumn2");
+      });
+    }
+  });
+}
+
 function postARR() {
  $('#sendbutton').on('click', function () {
   event.preventDefault();
@@ -89,9 +131,6 @@ function postARR() {
    sessionStorage.setItem('type' , 'danger');
    successDangerNotification();
 
- })
-  .always(function () {
-   console.log("complete");
  });
 
 });
@@ -160,17 +199,17 @@ function searchMachine() {
 }
 
 function successDangerNotification(){
-    var sesType = sessionStorage.getItem('type');
-    var amount = $('#notificationsList li').length + 1;
-        if (sesType == 'success') {
-            $("#notificationsList").empty();
-            $("#notificationsList").append("<li><a href='createFromSession.html'>success: " + sessionStorage.getItem('inputName') + "</a></li>");
-            $('#notificationAmount').text(amount);
-        } else if (sesType == 'danger') {
-            $("#notificationsList").empty();
-            $("#notificationsList").append("<li><a href='createFromSession.html'>Error: " + sessionStorage.getItem('inputName') + "</a></li>");
-            $('#notificationAmount').text(amount);
-        }
+  var sesType = sessionStorage.getItem('type');
+  var amount = $('#notificationsList li').length + 1;
+  if (sesType == 'success') {
+    $("#notificationsList").empty();
+    $("#notificationsList").append("<li><a href='createFromSession.html'>success: " + sessionStorage.getItem('inputName') + "</a></li>");
+    $('#notificationAmount').text(amount);
+  } else if (sesType == 'danger') {
+    $("#notificationsList").empty();
+    $("#notificationsList").append("<li><a href='createFromSession.html'>Error: " + sessionStorage.getItem('inputName') + "</a></li>");
+    $('#notificationAmount').text(amount);
+  }
 }
 
 
@@ -185,8 +224,3 @@ function createFromSession(){
   $('#errorInput').val(sessionStorage.getItem('inputError'));
 
 }
-
-
-
-
-

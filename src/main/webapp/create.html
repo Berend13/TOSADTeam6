@@ -126,7 +126,6 @@
                                             <div class="col-md-4">
                                                 <select id="selectTable1" name="selectTable1" class="form-control">
                                                     <option disabled selected value> -- select an option -- </option>
-                                                    <option value="DEPT">DEPT</option>
 
                                                 </select>
                                             </div>
@@ -137,9 +136,6 @@
                                             <div class="col-md-4">
                                                 <select id="selectColumn1" name="selectColumn1" class="form-control" disabled="disabled">
                                                     <option disabled selected value> -- select an option -- </option>
-                                                    <option value="DEPTNO">DEPTNO</option>
-                                                    <option value="DNAME" disabled >DNAME</option>
-                                                    <option value="LOC" disabled>LOC</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -194,9 +190,6 @@
                                             <div class="col-md-4">
                                                 <select id="selectColumn2" name="selectColumn2" class="form-control" disabled="disabled">
                                                     <option disabled selected value> -- select an option -- </option>
-                                                    <option value="DEPTNO">DEPTNO</option>
-                                                    <option value="DNAME" disabled >DNAME</option>
-                                                    <option value="LOC" disabled>LOC</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -249,6 +242,21 @@
 <script src="assets/js/functions.js"></script>
 
 <!-- Functions -->
-<script>disableDropdown(); postARR(); showHide();  successDangerNotification(); noSpace(event);</script>
+<script>
+    disableDropdown();
+    getTables();
+    $( "#selectTable1" ).change(function() {
+        var inputTable1 = $('#selectTable1 :selected').val();
+        getColumns(inputTable1, "select1");
+    });
+    $( "#selectTable2" ).change(function(){
+    var inputTable2 = $('#selectTable2 :selected').val();
+        getColumns(inputTable2, "select2");
+    });
+    postARR();
+    showHide();
+    successDangerNotification();
+    noSpace(event);
+</script>
 
 </html>
