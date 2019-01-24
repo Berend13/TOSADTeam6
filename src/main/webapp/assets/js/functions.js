@@ -55,7 +55,6 @@ function postARR() {
   var inputValue2 = $('#value2Input').val();
   var inputError = $('#errorInput').val();
   var BRT = sessionStorage.getItem('BRT');
-  var amount = NotificationStorage();
 
   sessionStorage.setItem('inputName' , inputName);
   sessionStorage.setItem('inputTable1' , inputTable1);
@@ -82,11 +81,13 @@ function postARR() {
 
   .done(function () {
    $.notify({title: "<b>Success!</b>", message: "The business rule has been generated. "},{type: "success"});
-   $("#notificationsList").append("<li><a href='createFromSession.html'>success: "+ inputName+"</a></li>");
+   sessionStorage.setItem('type' , 'success');
+   successDangerNotification();
  })
   .fail(function () {
    $.notify({title: "<b>Unfortunately...</b>", message: "An error has occured."},{type: "danger"});
-   $("#notificationsList").append("<li><a href='createFromSession.html'>Error: "+ inputName+"</a></li>");
+   sessionStorage.setItem('type' , 'danger');
+   successDangerNotification();
 
  })
   .always(function () {
@@ -158,12 +159,21 @@ function searchMachine() {
 });
 }
 
-function NotificationStorage(){
-  $('#sendbutton').on('click', function () {
-    var amount = $('#notificationsList li').length;
-    $('#notificationAmount').text(amount);
-  });
+function successDangerNotification(){
+    var sesType = sessionStorage.getItem('type');
+    var amount = $('#notificationsList li').length + 1;
+        if (sesType == 'success') {
+            $("#notificationsList").empty();
+            $("#notificationsList").append("<li><a href='createFromSession.html'>success: " + sessionStorage.getItem('inputName') + "</a></li>");
+            $('#notificationAmount').text(amount);
+        } else if (sesType == 'danger') {
+            $("#notificationsList").empty();
+            $("#notificationsList").append("<li><a href='createFromSession.html'>Error: " + sessionStorage.getItem('inputName') + "</a></li>");
+            $('#notificationAmount').text(amount);
+        }
 }
+
+
 
 function createFromSession(){
   $('#selectName').val(sessionStorage.getItem('inputName'));
@@ -175,6 +185,7 @@ function createFromSession(){
   $('#errorInput').val(sessionStorage.getItem('inputError'));
 
 }
+
 
 
 
