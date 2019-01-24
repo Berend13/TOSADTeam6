@@ -86,7 +86,7 @@ public class BusinessRuleController {
 
 		for (String table : BusinessRuleServiceInst.getAllTables()){
 			JsonObjectBuilder job = Json.createObjectBuilder();
-			job.add("tableNaam", table);
+			job.add("tableName", table);
 
 			jab.add(job);
 		}
@@ -108,10 +108,13 @@ public class BusinessRuleController {
 		for (String column : BusinessRuleServiceInst.getAllColumns(tableNaam)){
 			JsonObjectBuilder job = Json.createObjectBuilder();
 			job.add("column", column);
+
 			// for (String datatype : column){
 			// 	JsonObjectBuilder job2 = Json.createObjectBuilder();
 			// 	job2.add("datatype", datatype);
 			// }
+
+			// job.add("datatype", job2);
 			jab.add(job);
 		}
 
