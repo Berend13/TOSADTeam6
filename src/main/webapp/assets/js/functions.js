@@ -57,10 +57,11 @@ function getTables(){
   });
 }
 
-function getColumns(tableName, select){
+function getColumns(tableName, select,){
+
 
   $.ajax({
-    url: 'api/businessrule/columns/'+ tableName,
+    url: 'api/businessrule/columns/'+ tableName +"/" + whatBRT,
     type: 'GET'
   })
   .done(function(columnName) {
