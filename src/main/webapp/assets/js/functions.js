@@ -178,7 +178,9 @@ function showHide() {
   $("#divTable2").removeClass('d-none');
   $("#divColumn2").removeClass('d-none');
 }else if (whatBRT == 'ALR'){
- $("#divValueDynamic").removeClass('d-none');
+  $("#divTable1").removeClass('d-none');
+  $("#divColumn1").removeClass('d-none');
+  $("#divList").removeClass('d-none');
 }else if (whatBRT == 'EOR'){
 
 }
