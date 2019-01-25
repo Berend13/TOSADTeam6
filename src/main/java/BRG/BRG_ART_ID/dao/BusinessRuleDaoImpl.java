@@ -84,7 +84,7 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		while (result.next()) {
 			String tableName = result.getString("table_name");
 
-			if (!tableName.contains("B_RULE_TYPE") && !tableName.contains("BUSINESS_RULE") && !tableName.equals("USERS")) {
+			if (!tableName.equals("B_RULE_TYPE") && !tableName.equals("BUSINESS_RULE") && !tableName.equals("USERS")) {
 				tables.add(tableName);
 			}
 		}
@@ -94,7 +94,7 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		return tables;
 	}
 
-	public List<String> getAllColumns(String table) throws SQLException {
+	public List<String> getAllColumns(String table, String BusinessRuleType) throws SQLException {
 		List<String> columns = new ArrayList<String>();
 		conn = BaseDao.getConnection();
 
@@ -104,9 +104,17 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		
 		while (result.next()) {
 			String columnName = result.getString("COLUMN_NAME");
-			// String DataType = result.getString("DATA_TYPE");
+			String DataType = result.getString("DATA_TYPE");
+
+			if (BusinessRuleType.equals("ARR") || BusinessRuleType.equals("ACR") || BusinessRuleType.equals("TCR") || BusinessRuleType.equals("IECR")){
+				if (DataType.equals("NUMBER")) {
+					columns.add(columnName);
+				}
+			}else{
+				columns.add(columnName);
+			}
 			
-			columns.add(columnName);
+			
 		}
 		
 		conn.close();
