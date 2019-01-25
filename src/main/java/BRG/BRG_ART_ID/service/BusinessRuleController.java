@@ -99,14 +99,14 @@ public class BusinessRuleController {
 
 	// get all tables
 	@GET
-	@Path("/columns/{tableName}")
+	@Path("/columns/{tableName}/{businessRuleType}")
 	@Produces("application/json")
-	public String getAllColumns(@PathParam("tableName") String tableName) throws SQLException {
+	public String getAllColumns(@PathParam("tableName") String tableName, @PathParam("businessRuleType") String businessRuleType) throws SQLException {
 		BusinessRuleDaoImpl BusinessRuleServiceInst = new BusinessRuleDaoImpl();
 
 		JsonArrayBuilder jab = Json.createArrayBuilder();
 
-		for (String column : BusinessRuleServiceInst.getAllColumns(tableName)){
+		for (String column : BusinessRuleServiceInst.getAllColumns(tableName, businessRuleType)){
 			JsonObjectBuilder job = Json.createObjectBuilder();
 			job.add("column", column);
 
