@@ -1,10 +1,7 @@
-function sendBRT() {
- $('#toCreate').on('click', function () {
-  $('#selectBRT').find("option:selected").text();
-  selectedText = $('#selectBRT').find("option:selected").val();
-  sessionStorage.setItem('BRT' , selectedText);
-});
-}
+function sendBRT() {  $('#toCreate').on('click', function () {
+  $('#selectBRT').find("option:selected").text();   selectedText =
+  $('#selectBRT').find("option:selected").val();   sessionStorage.setItem('BRT'
+    , selectedText); }); }
 
 whatBRT = sessionStorage.getItem('BRT');
 
@@ -101,6 +98,13 @@ function postTrigger() {
   var inputColumn2 = $('#selectColumn2 :selected').val();
   var inputError = $('#errorInput').val();
   var BRT = sessionStorage.getItem('BRT');
+  var fields = $(".field_value");
+  var fieldList = [];
+  $.each(fields, function(index, field) {
+    fieldList.push($(field).val());
+  });
+
+  console.log(fieldList);
 
   sessionStorage.setItem('inputName' , inputName);
   sessionStorage.setItem('inputTable1' , inputTable1);
@@ -173,11 +177,15 @@ function showHide() {
   $("#divRuleCompare").removeClass('d-none');
   $("#divTable2").removeClass('d-none');
   $("#divColumn2").removeClass('d-none');
-}else{
+}else if (whatBRT == 'ALR'){
+ $("#divValueDynamic").removeClass('d-none');
+}else if (whatBRT == 'EOR'){
+
+}
+else{
  alert('Oops! Something went wrong. Maybe you did not select a business rule type.');
  location.replace(index.html);
-}
-}
+}}
 
 
 function getAllRules() {
@@ -233,3 +241,29 @@ function createFromSession(){
   $('#errorInput').val(sessionStorage.getItem('inputError'));
 
 }
+
+function removeField(){
+ $(".remove_field_button").click(function() {
+  $(this).closest('.form-group').remove();
+});
+}
+
+$(".add_field_button").click(function() {
+  var field2 = " <div id='' class='form-group'> <label class='col-md-4 control-label' for='valueInputDynamic'></label> <div class='col-md-4'> <div class='input-group'> <input type='text' class='form-control field_value' placeholder='...'> <span class='input-group-btn'> <button class='btn btn-default remove_field_button' type='button'>-</button> </span> </div></div></div>";
+
+
+  $(field2).appendTo('#field_holder');
+
+  removeField();
+});
+
+
+
+
+
+
+
+
+
+
+
