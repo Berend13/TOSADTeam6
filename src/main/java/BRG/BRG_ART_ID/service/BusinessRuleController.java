@@ -27,11 +27,12 @@ import java.util.*;
 
 import BRG.BRG_ART_ID.dao.BusinessRuleDaoImpl;
 import BRG.BRG_ART_ID.domain.BusinessRule;
+import BRG.BRG_ART_ID.domain.RuleFactory;
 
 @Path("/businessrule")
 public class BusinessRuleController {
 
-	// Nieuwe business rule plaatsen
+	// Nieuwe business rule plaatsen businessRuleType
 	@POST
 	@Path("/new")
 	@Produces("application/json")
@@ -40,16 +41,15 @@ public class BusinessRuleController {
 		@FormParam("BusinessColumn2") String BusinessColumn2, @FormParam("BusinessError") String BusinessError) throws SQLException {
 
 		BusinessRuleDaoImpl BusinessRuleServiceInst = new BusinessRuleDaoImpl();
+		RuleFactory RuleFactoryServiceInst = new RuleFactory();
 		Boolean result = null;
 		
+		// result = BusinessRuleServiceInst.saveBusinessRule(BusinessFunction, BusinessName, BusinessTable1, BusinessColumn1, BusinessValue1, BusinessRuleBetween, BusinessRuleCompare, BusinessValue2, BusinessTable2, BusinessColumn2, BusinessError);
 
-		result = BusinessRuleServiceInst.saveBusinessRule(BusinessFunction, BusinessName, BusinessTable1, BusinessColumn1, BusinessValue1, BusinessRuleBetween, BusinessRuleCompare, BusinessValue2, BusinessTable2, BusinessColumn2, BusinessError);
+		RuleFactoryServiceInst.createBusinessRule(BusinessFunction, BusinessName, BusinessTable1, BusinessColumn1, BusinessValue1, BusinessRuleBetween, BusinessRuleCompare, BusinessValue2, BusinessTable2, BusinessColumn2, BusinessError);
 
-		if (result == true) {
-			return Response.ok().build();
-		}else {
-			return null;
-		}
+	return Response.ok().build();
+		
 	}
 	// create new business rule
 
