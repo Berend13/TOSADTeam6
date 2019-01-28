@@ -84,7 +84,7 @@ function getColumns(tableName, select,){
 }
 
 function postTrigger() {
- $('#sendbutton').on('click', function () {
+ $('#sendbutton').click(function(event) {
   event.preventDefault();
 
   var inputName = $('#selectName').val();
@@ -154,35 +154,62 @@ function postTrigger() {
 
 function showHide() {
  if (whatBRT == 'ARR') {
+  $('#title').append('Attribute range rule');
   $("#divTable1").removeClass('d-none');
   $("#divColumn1").removeClass('d-none');
   $("#divValue1").removeClass('d-none');
   $("#divRuleBetween").removeClass('d-none');
   $("#divValue2").removeClass('d-none');
 }else if (whatBRT =='ACR'){
+  $('#title').append('Attribute compare rule');
   $("#divTable1").removeClass('d-none');
   $("#divColumn1").removeClass('d-none');
   $("#divRuleCompare").removeClass('d-none');
   $("#divValue2").removeClass('d-none');
 
 }else if (whatBRT =='TCR'){
+  $('#title').append('Tuple compare rule');
   $("#divTable1").removeClass('d-none');
   $("#divColumn1").removeClass('d-none');
   $("#divRuleCompare").removeClass('d-none');
   $("#divColumn2").removeClass('d-none');
 
 }else if (whatBRT =='IECR'){
+  $('#title').append('Inter entity compare rule');
   $("#divTable1").removeClass('d-none');
   $("#divColumn1").removeClass('d-none');
   $("#divRuleCompare").removeClass('d-none');
   $("#divTable2").removeClass('d-none');
   $("#divColumn2").removeClass('d-none');
 }else if (whatBRT == 'ALR'){
+  $('#title').append('attribute list rule');
   $("#divTable1").removeClass('d-none');
   $("#divColumn1").removeClass('d-none');
   $("#divList").removeClass('d-none');
+}else if (whatBRT == 'AOR'){
+  $('#title').append('Attribute other rule');
+  $("#divTriggerTiming").removeClass('d-none');
+  $("#divDMLStatements").removeClass('d-none');
+  $("#divTable1").removeClass('d-none');
+  $("#divForEachRule").removeClass('d-none');
+  $('#divUserSQL').removeClass('d-none');
+  $('#userSQLInput').append('Declare\n\nBegin\n\nEND (Triggername);');
 }else if (whatBRT == 'EOR'){
-
+  $('#title').append('Entity other rule');
+  $("#divTriggerTiming").removeClass('d-none');
+  $("#divDMLStatements").removeClass('d-none');
+  $("#divTable1").removeClass('d-none');
+  $("#divForEachRule").removeClass('d-none');
+  $('#divUserSQL').removeClass('d-none');
+  $('#userSQLInput').append('Declare\n\nBegin\n\nEND (Triggername); ');
+}else if (whatBRT == 'TOR'){
+  $('#title').append('Tuple other rule');
+  $("#divTriggerTiming").removeClass('d-none');
+  $("#divDMLStatements").removeClass('d-none');
+  $("#divTable1").removeClass('d-none');
+  $("#divForEachRule").removeClass('d-none');
+  $('#divUserSQL').removeClass('d-none');
+  $('#userSQLInput').append('Declare\n\nBegin\n\nEND (Triggername);');
 }
 else{
  alert('Oops! Something went wrong. Maybe you did not select a business rule type.');
@@ -251,7 +278,7 @@ function removeField(){
 }
 
 $(".add_field_button").click(function() {
-  var field2 = " <div class='form-group'> <label class='col-md-4 control-label' for='valueInputDynamic'></label> <div class='col-md-4'> <div class='input-group'> <input type='text' class='form-control field_value' placeholder='...'> <span class='input-group-btn'> <button class='btn btn-default remove_field_button' type='button'>-</button> </span> </div></div></div>";
+  var field2 = " <div class='form-group'> <label class='col-md-4 control-label' for='valueInputDynamic'></label> <div class='col-md-4'> <div class='input-group'> <input type='text' class='form-control field_value' placeholder='...' required> <span class='input-group-btn'> <button class='btn btn-default remove_field_button' type='button'>-</button> </span> </div></div></div>";
 
 
   $(field2).appendTo('#field_holder');

@@ -44,7 +44,7 @@
 
                 <ul class="nav">
                     <li>
-                        <a href="index.html">
+                        <a href="home.html">
                             <i class="ti-home"></i>
                             <p>Home</p>
                         </a>
@@ -107,7 +107,7 @@
                                 <div class="content">
                                     <form class="form-horizontal" method="POST">
                                         <!-- Form Name -->
-                                        <legend>Business Rules Generator</legend>
+                                        <legend id="title"></legend>
 
 
                                         <!-- Text input-->
@@ -119,14 +119,27 @@
                                         </div>
 
                                         <div class="form-group d-none" id="divTable1">
-                                            <label class="col-md-4 control-label" for="selectTable1">Table 1</label>
+                                            <label class="col-md-4 control-label" for="selectTable2">Table 1</label>
                                             <div class="col-md-4">
-                                                <select id="selectTable1" name="selectTable1" class="form-control">
+                                                <select id="selectTable1" name="selectbasic" class="form-control">
                                                     <option disabled selected value> -- select an option -- </option>
-
                                                 </select>
                                             </div>
                                         </div>
+
+
+                                        <div class="form-group d-none" id="divTriggerTiming" >
+                                            <label class="col-md-4 control-label" for="selectBeforeAfter"></label>
+                                            <div class="col-md-4">
+                                                <select id="selectBeforeAfter" name="selectBeforeAfter" class="form-control">
+                                                    <option disabled selected value> -- select an option -- </option>
+                                                    <option value="before">Before</option>
+                                                    <option value="after">After</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Checkbox Other rules -->
 
                                         <div class="form-group d-none" id="divColumn1">
                                             <label class="col-md-4 control-label" for="selectColumn1">Column 1</label>
@@ -201,33 +214,40 @@
                                             <label class="col-md-4 control-label">List rule</label>
                                             <div class="col-md-4">
                                                 <div class="input-group">
-                                                  <input type="text" class="form-control field_value" placeholder="">
-                                                  <span class="input-group-btn">
-                                                    <button class="btn btn-default add_field_button" type="button">Add field</button>
-                                                </span>
+                                                    <input type="text" class="form-control field_value" required="required">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default add_field_button" type="button">Add field</button>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-
-                                    <div id="field_holder">
-                                        <!-- fields -->
-                                    </div>
-
-
-                                    <div class="form-group" id="divError">
-                                        <label class="col-md-4 control-label" for="errorInput">Error message</label>
-                                        <div class="col-md-4">
-                                            <textarea id="errorInput" name="errorInput" class="form-control" rows="5" placeholder="Error message..."></textarea>
+                                        <div id="field_holder">
+                                            <!-- fields -->
                                         </div>
-                                    </div>
-                                    <!-- Button -->
-                                    <div class="form-group">
-                                        <div class="col-md-4">
-                                            <button id="sendbutton" name="sendbutton" class="btn btn-primary">send</button>
+
+
+                                        <div class="form-group d-none" id="divUserSQL">
+                                            <label class="col-md-4 control-label" for="value2Input">SQL code:</label>
+                                            <div class="col-md-4">
+                                                <textarea id="userSQLInput" name="userSQlInput" class="form-control input-md" rows=10></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+
+                                        <div class="form-group" id="divError">
+                                            <label class="col-md-4 control-label" for="errorInput">Error message</label>
+                                            <div class="col-md-4">
+                                                <textarea id="errorInput" name="errorInput" class="form-control" rows="5" placeholder="Error message..."></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Button -->
+                                        <div class="form-group">
+                                            <div class="col-md-4">
+                                                <button type="submit" id="sendbutton" name="sendbutton" class="btn btn-primary">send</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -235,7 +255,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 </body>
 
