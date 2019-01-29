@@ -1,9 +1,18 @@
 function sendBRT() {  $('#toCreate').on('click', function () {
-  $('#selectBRT').find("option:selected").text();   selectedText =
-  $('#selectBRT').find("option:selected").val();   sessionStorage.setItem('BRT'
-    , selectedText); }); }
+  $('#selectBRT').find("option:selected").text();   
+  selectedText = $('#selectBRT').find("option:selected").val();   
+  sessionStorage.setItem('BRT', selectedText); 
+}); 
+}
 
-whatBRT = sessionStorage.getItem('BRT');
+var whatBRT = sessionStorage.getItem('BRT');
+var inputCBI;
+var inputCBU;
+var inputCBD;
+var inputCBFER;
+var amountOfFields;
+
+
 
 function specifyFunction() {
  $("#selectCategory").change(function () {
@@ -86,66 +95,90 @@ function getColumns(tableName, select,){
 function postTrigger() {
  $('#sendbutton').click(function(event) {
   event.preventDefault();
+  if ($('#CBInsert').is(":checked"))
+  {
+    sessionStorage.setItem('selectCBI' , "checked");
+  }else{
+   sessionStorage.setItem('selectCBI' , ""); 
+ }if ($('#CBUpdate').is(":checked"))
+ {
+  sessionStorage.setItem('selectCBU' , "checked");
+}else{
+ sessionStorage.setItem('selectCBU' , ""); 
+}if ($('#CBDelete').is(":checked"))
+{
+  sessionStorage.setItem('selectCBD' , "checked");
+}else{
+ sessionStorage.setItem('selectCBD' , ""); 
+}if ($('#CBFER').is(":checked"))
+{
+  sessionStorage.setItem('selectCBFER' , "checked");
+}else{
+ sessionStorage.setItem('selectCBFER' , ""); 
+}
+var inputName = $('#selectName').val();
+var inputTable1 = $('#selectTable1 :selected').val();
+var inputTrigger = $('#selectTrigger :selected').val();
+var inputColumn1 = $('#selectColumn1 :selected').val();
+var inputValue1 = $('#value1Input').val();
+var inputRuleBetween = $('#selectRuleBetween :selected').val();
+var inputRuleCompare = $('#selectRuleCompare :selected').val();
+var inputValue2 = $('#value2Input').val();
+var inputTable2 = $('#selectTable2 :selected').val();
+var inputColumn2 = $('#selectColumn2 :selected').val();
+var inputSQL = $('#userSQLInput').val();
+var inputError = $('#errorInput').val();
+var BRT = sessionStorage.getItem('BRT');
+var fields = $(".field_value");
+var fieldList = [];
+$.each(fields, function(index, field) {
+  fieldList.push($(field).val());
+});
 
-  var inputName = $('#selectName').val();
-  var inputTable1 = $('#selectTable1 :selected').val();
-  var inputColumn1 = $('#selectColumn1 :selected').val();
-  var inputValue1 = $('#value1Input').val();
-  var inputRuleBetween = $('#selectRuleBetween :selected').val();
-  var inputRuleCompare = $('#selectRuleCompare :selected').val();
-  var inputValue2 = $('#value2Input').val();
-  var inputTable2 = $('#selectTable2 :selected').val();
-  var inputColumn2 = $('#selectColumn2 :selected').val();
-  var inputError = $('#errorInput').val();
-  var BRT = sessionStorage.getItem('BRT');
-  var fields = $(".field_value");
-  var fieldList = [];
-  $.each(fields, function(index, field) {
-    fieldList.push($(field).val());
-  });
+console.log(fieldList);
 
-  console.log(fieldList);
+sessionStorage.setItem('fieldList', fieldList);
+sessionStorage.setItem('inputName' , inputName);
+sessionStorage.setItem('inputTable1' , inputTable1);
+sessionStorage.setItem('inputTrigger', inputTrigger);
+sessionStorage.setItem('inputColumn1' , inputColumn1);
+sessionStorage.setItem('inputValue1' , inputValue1);
+sessionStorage.setItem('inputRuleBetween' , inputRuleBetween);
+sessionStorage.setItem('inputRuleCompare' , inputRuleCompare);
+sessionStorage.setItem('inputValue2' , inputValue2);
+sessionStorage.setItem('inputTable2' , inputTable2);
+sessionStorage.setItem('inputColumn2' , inputColumn2);
+sessionStorage.setItem('inputError' , inputError);
 
-  sessionStorage.setItem('inputName' , inputName);
-  sessionStorage.setItem('inputTable1' , inputTable1);
-  sessionStorage.setItem('inputColumn1' , inputColumn1);
-  sessionStorage.setItem('inputValue1' , inputValue1);
-  sessionStorage.setItem('inputRuleBetween' , inputRuleBetween);
-  sessionStorage.setItem('inputRuleCompare' , inputRuleCompare);
-  sessionStorage.setItem('inputValue2' , inputValue2);
-  sessionStorage.setItem('inputTable2' , inputTable2);
-  sessionStorage.setItem('inputColumn2' , inputColumn2);
-  sessionStorage.setItem('inputError' , inputError);
-
-  $.ajax({
-   url: 'api/businessrule/new',
-   type: 'POST',
-   data: {
-    BusinessFunction : BRT,
-    BusinessName: inputName,
-    BusinessTable1: inputTable1,
-    BusinessColumn1: inputColumn1,
-    BusinessValue1: inputValue1,
-    BusinessRuleBetween: inputRuleBetween,
-    BusinessRuleCompare: inputRuleCompare,
-    BusinessValue2: inputValue2,
-    BusinessTable2: inputTable2,
-    BusinessColumn2: inputColumn2,
-    BusinessError: inputError
-  }
+$.ajax({
+ url: 'api/businessrule/new',
+ type: 'POST',
+ data: {
+  BusinessFunction : BRT,
+  BusinessName: inputName,
+  BusinessTable1: inputTable1,
+  BusinessColumn1: inputColumn1,
+  BusinessValue1: inputValue1,
+  BusinessRuleBetween: inputRuleBetween,
+  BusinessRuleCompare: inputRuleCompare,
+  BusinessValue2: inputValue2,
+  BusinessTable2: inputTable2,
+  BusinessColumn2: inputColumn2,
+  BusinessError: inputError
+}
 })
 
-  .done(function () {
-   $.notify({title: "<b>Success!</b>", message: "The business rule has been generated. "},{type: "success"});
-   sessionStorage.setItem('type' , 'success');
-   successDangerNotification();
- })
-  .fail(function () {
-   $.notify({title: "<b>Unfortunately...</b>", message: "An error has occured."},{type: "danger"});
-   sessionStorage.setItem('type' , 'danger');
-   successDangerNotification();
+.done(function () {
+ $.notify({title: "<b>Success!</b>", message: "The business rule has been generated. "},{type: "success"});
+ sessionStorage.setItem('type' , 'success');
+ successDangerNotification();
+})
+.fail(function () {
+ $.notify({title: "<b>Unfortunately...</b>", message: "An error has occured."},{type: "danger"});
+ sessionStorage.setItem('type' , 'danger');
+ successDangerNotification();
 
- });
+});
 
 });
 }
@@ -218,11 +251,12 @@ function showHide() {
   $("#divCheckboxI").removeClass('d-none');
   $("#divCheckboxFER").removeClass('d-none');
   $('#divUserSQL').removeClass('d-none');
-  $('#userSQLInput').append('Declare\n\nBegin\n\nEND (Triggername);');}
-else{
+  $('#userSQLInput').append('Declare\n\nBegin\n\nEND (Triggername);');
+}else{
  alert('Oops! Something went wrong. Maybe you did not select a business rule type.');
  location.replace(index.html);
-}}
+}
+};
 
 
 function getAllRules() {
@@ -266,17 +300,61 @@ function successDangerNotification(){
   }
 }
 
+$(".add_field_button").click(function() {
+  var field2 = " <div class='form-group'> <label class='col-md-4 control-label' for='valueInputDynamic'></label> <div class='col-md-4'> <div class='input-group'> <input type='text' class='form-control field_value' placeholder='...' required> <span class='input-group-btn'> <button class='btn btn-default remove_field_button' type='button'>-</button> </span> </div></div></div>";
 
+  $(field2).appendTo('#field_holder');
+  var amountOfFields = $('#field_holder > div').length;
+  sessionStorage.setItem("amountOfFields", amountOfFields);
+  removeField();
+});
 
 function createFromSession(){
+  var checkCBI = sessionStorage.getItem('selectCBI');
+  var checkCBU = sessionStorage.getItem('selectCBU');
+  var checkCBD = sessionStorage.getItem('selectCBD');
+  var checkCBFER = sessionStorage.getItem('selectCBFER');
+  var textField = sessionStorage.getItem('fieldList');
+  textField = textField.split(',');
+  var amountOfFields = sessionStorage.getItem('amountOfFields');
+
   $('#selectName').val(sessionStorage.getItem('inputName'));
   $('#selectTable1').val(sessionStorage.getItem('inputTable1'));
+  $('#selectTrigger').val(sessionStorage.getItem('inputTrigger'));
   $('#selectColumn1').val(sessionStorage.getItem('inputColumn1'));
   $('#value1Input').val(sessionStorage.getItem('inputValue1'));
   $('#selectRuleBetween').val(sessionStorage.getItem('inputRuleBetween'));
   $('#value2Input').val(sessionStorage.getItem('inputValue2'));
+  $('#userSQLInput').val(sessionStorage.getItem('inputSQL'));
   $('#errorInput').val(sessionStorage.getItem('inputError'));
+  console.log(textField);
+  // for (i = 0; i < amountOfFields; i++) { 
+  //   var field2 = " <div class='form-group'> <label class='col-md-4 control-label' for='valueInputDynamic'></label> <div class='col-md-4'> <div class='input-group'> <input type='text' id=\"yeet\" class='form-control field_value' placeholder='...'> <span class='input-group-btn'> <button class='btn btn-default remove_field_button' type='button'>-</button> </span> </div></div></div>";
+  //   $(field2).appendTo('#field_holder');
+  //   $('.field_value').val(textField[i]);
+  // };
 
+  $.each(textField, function(index, field) {
+    if (index == 0) {
+      $("#listInput").val(field);
+   }else{
+
+     $("<div class='form-group'> <label class='col-md-4 control-label' for='valueInputDynamic'></label> <div class='col-md-4'> <div class='input-group'> <input type='text' class='form-control field_value' placeholder='...'  value=" +field+ "> <span class='input-group-btn'> <button class='btn btn-default remove_field_button' type='button'>-</button> </span> </div></div></div>").appendTo('#field_holder');
+   }
+ });
+
+  if (checkCBI == "checked"){
+    $('#CBInsert').attr("checked","");
+  }
+  if (checkCBU == "checked"){
+    $('#CBUpdate').attr("checked","");
+  }
+  if (checkCBD == "checked"){
+    $('#CBDelete').attr("checked","");
+  }
+  if (checkCBFER == "checked"){
+    $('#CBFER').attr("checked","");
+  }
 }
 
 function removeField(){
@@ -285,14 +363,6 @@ function removeField(){
 });
 }
 
-$(".add_field_button").click(function() {
-  var field2 = " <div class='form-group'> <label class='col-md-4 control-label' for='valueInputDynamic'></label> <div class='col-md-4'> <div class='input-group'> <input type='text' class='form-control field_value' placeholder='...' required> <span class='input-group-btn'> <button class='btn btn-default remove_field_button' type='button'>-</button> </span> </div></div></div>";
-
-
-  $(field2).appendTo('#field_holder');
-
-  removeField();
-});
 
 
 
