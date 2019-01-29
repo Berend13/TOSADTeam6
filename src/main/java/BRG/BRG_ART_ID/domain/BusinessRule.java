@@ -4,16 +4,18 @@ public class BusinessRule {
 	private int ID;
 	private String name;
 	private String code;
+	private String type;
 	
 	public BusinessRule() {
 		
 	}
 	
 	
-	public BusinessRule(int ID, String name, String code) {
+	public BusinessRule(int ID, String name, String code, String type) {
 		this.ID = ID;
 		this.name = name;
 		this.code = code;
+		this.type = type;
 	}
 	
 	
@@ -46,5 +48,11 @@ public class BusinessRule {
 		this.code = code;
 	}
 	
+	public String getType() {
+		return type;
+	}
 	
+	public void setType(String type) {
+		this.type = type;
+	}
 }

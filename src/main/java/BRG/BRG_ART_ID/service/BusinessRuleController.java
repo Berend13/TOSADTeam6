@@ -38,15 +38,13 @@ public class BusinessRuleController {
 	@Produces("application/json")
 	public Response saveBusinessRule(@FormParam("BusinessFunction") String BusinessFunction, @FormParam("BusinessName") String BusinessName, @FormParam("BusinessTable1") String BusinessTable1,
 		@FormParam("BusinessColumn1") String BusinessColumn1, @FormParam("BusinessValue1") int BusinessValue1, @FormParam("BusinessRuleCompare") String BusinessRuleCompare, @FormParam("BusinessRuleBetween") String BusinessRuleBetween, @FormParam("BusinessValue2") int BusinessValue2, @FormParam("BusinessTable2") String BusinessTable2,
-		@FormParam("BusinessColumn2") String BusinessColumn2, @FormParam("BusinessError") String BusinessError) throws SQLException {
+		@FormParam("BusinessColumn2") String BusinessColumn2, @FormParam("BusinessError") String BusinessError, @FormParam("BusinessTrigger") String BusinessTrigger, @FormParam("BusinessList") String BusinessList, @FormParam("BusinessSQL") String BusinessSQL) throws SQLException {
 
 		BusinessRuleDaoImpl BusinessRuleServiceInst = new BusinessRuleDaoImpl();
 		RuleFactory RuleFactoryServiceInst = new RuleFactory();
 		Boolean result = null;
-		
-		// result = BusinessRuleServiceInst.saveBusinessRule(BusinessFunction, BusinessName, BusinessTable1, BusinessColumn1, BusinessValue1, BusinessRuleBetween, BusinessRuleCompare, BusinessValue2, BusinessTable2, BusinessColumn2, BusinessError);
 
-		RuleFactoryServiceInst.createBusinessRule(BusinessFunction, BusinessName, BusinessTable1, BusinessColumn1, BusinessValue1, BusinessRuleBetween, BusinessRuleCompare, BusinessValue2, BusinessTable2, BusinessColumn2, BusinessError);
+		RuleFactoryServiceInst.createBusinessRule(BusinessFunction, BusinessName, BusinessTable1, BusinessColumn1, BusinessValue1, BusinessRuleBetween, BusinessRuleCompare, BusinessValue2, BusinessTable2, BusinessColumn2, BusinessError, BusinessTrigger, BusinessList, BusinessSQL);
 
 	return Response.ok().build();
 		
@@ -67,7 +65,7 @@ public class BusinessRuleController {
 			job.add("ID", rule.getID());
 			job.add("name", rule.getName());
 			job.add("code", rule.getCode());
-
+			job.add("type", rule.getType());
 			jab.add(job);
 		}
 

@@ -29,8 +29,9 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 			int ID = result.getInt("ID");
 			String name = result.getString("NAME");
 			String code = result.getString("CODE");
+			String type = result.getString("TYPE");
 			
-			BusinessRule rule = new BusinessRule(ID, name, code);
+			BusinessRule rule = new BusinessRule(ID, name, code, type);
 			rules.add(rule);
 		}
 		conn.close();
@@ -63,35 +64,9 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		return true;
 	}
 	
-	
-	public boolean saveBusinessRuleTCR(String businessName, String businessTable1, String businessColumn1, 
-			String BusinessRuleCompare, String BusinessColumn2 , String businessError) throws SQLException {
-		conn = BaseDao.getConnection();
-
-		String query = "{? = call TCR(?, ?, ?, ?, ?, ?)}";
-		CallableStatement statement = conn.prepareCall(query);
-		statement.setString(2, businessName);
-		statement.setString(3, businessTable1);
-		statement.setString(4, businessColumn1);
-		statement.setString(5, BusinessRuleCompare);
-		statement.setString(6, BusinessColumn2);
-		statement.setString(7, businessError);
-		statement.registerOutParameter(1,Types.VARCHAR);
-
-		int executeFunction = statement.executeUpdate();
-		System.out.println(executeFunction);
-		if (executeFunction > 0) {
-			System.out.println("Business rule aangemaakt");
-		}
-		conn.close();		
-		return true;
-	}
-	
-	
-	
 	// create new business rule
 
-		// create new business rule
+	// create new business rule
 	public boolean saveBusinessRuleACR(String BusinessName, String BusinessTable1, String BusinessColumn1, String BusinessRuleCompare, int BusinessValue2, String BusinessError) throws SQLException {
 		conn = BaseDao.getConnection();
 
@@ -114,7 +89,54 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		return true;
 	}
 	// create new business rule
-	
+
+	// create new business rule
+	public boolean saveBusinessRuleAOR(String businessName, String businessTable1, String businessTrigger, String businessSQL, 
+		String businessError) throws SQLException {
+		conn = BaseDao.getConnection();
+
+		String query = "{? = call OTR(?, ?, ?, ?, ?, ?)}";
+		CallableStatement statement = conn.prepareCall(query);
+		statement.setString(2, businessName);
+		statement.setString(3, businessTable1);
+		statement.setString(4, businessTrigger);
+		statement.setString(5, businessSQL);
+		statement.setString(6, businessError);
+		statement.registerOutParameter(1,Types.VARCHAR);
+
+		int executeFunction = statement.executeUpdate();
+		System.out.println(executeFunction);
+		if (executeFunction > 0) {
+			System.out.println("Business rule aangemaakt");
+		}
+		conn.close();		
+		return true;
+	}
+
+	// create new business rule
+	public boolean saveBusinessRuleTCR(String businessName, String businessTable1, String businessColumn1, 
+		String businessRuleCompare, String businessColumn2 , String businessError) throws SQLException {
+		conn = BaseDao.getConnection();
+
+		String query = "{? = call TCR(?, ?, ?, ?, ?, ?)}";
+		CallableStatement statement = conn.prepareCall(query);
+		statement.setString(2, businessName);
+		statement.setString(3, businessTable1);
+		statement.setString(4, businessColumn1);
+		statement.setString(5, businessRuleCompare);
+		statement.setString(6, businessColumn2);
+		statement.setString(7, businessError);
+		statement.registerOutParameter(1,Types.VARCHAR);
+
+		int executeFunction = statement.executeUpdate();
+		System.out.println(executeFunction);
+		if (executeFunction > 0) {
+			System.out.println("Business rule aangemaakt");
+		}
+		conn.close();		
+		return true;
+	}
+	// create new business rule
 	
 	public List<String> getAllTables() throws SQLException {
 		List<String> tables = new ArrayList<String>();
