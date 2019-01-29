@@ -191,7 +191,10 @@ function showHide() {
   $("#divTriggerTiming").removeClass('d-none');
   $("#divDMLStatements").removeClass('d-none');
   $("#divTable1").removeClass('d-none');
-  $("#divForEachRule").removeClass('d-none');
+  $("#divCheckboxU").removeClass('d-none');
+  $("#divCheckboxD").removeClass('d-none');
+  $("#divCheckboxI").removeClass('d-none');
+  $("#divCheckboxFER").removeClass('d-none');
   $('#divUserSQL').removeClass('d-none');
   $('#userSQLInput').append('Declare\n\nBegin\n\nEND (Triggername);');
 }else if (whatBRT == 'EOR'){
@@ -199,18 +202,23 @@ function showHide() {
   $("#divTriggerTiming").removeClass('d-none');
   $("#divDMLStatements").removeClass('d-none');
   $("#divTable1").removeClass('d-none');
-  $("#divForEachRule").removeClass('d-none');
+  $("#divCheckboxU").removeClass('d-none');
+  $("#divCheckboxD").removeClass('d-none');
+  $("#divCheckboxI").removeClass('d-none');
+  $("#divCheckboxFER").removeClass('d-none');
   $('#divUserSQL').removeClass('d-none');
-  $('#userSQLInput').append('Declare\n\nBegin\n\nEND (Triggername); ');
+  $('#userSQLInput').append('Declare\n\nBegin\n\nEND (Triggername);');
 }else if (whatBRT == 'TOR'){
   $('#title').append('Tuple other rule');
   $("#divTriggerTiming").removeClass('d-none');
   $("#divDMLStatements").removeClass('d-none');
   $("#divTable1").removeClass('d-none');
-  $("#divForEachRule").removeClass('d-none');
+  $("#divCheckboxU").removeClass('d-none');
+  $("#divCheckboxD").removeClass('d-none');
+  $("#divCheckboxI").removeClass('d-none');
+  $("#divCheckboxFER").removeClass('d-none');
   $('#divUserSQL').removeClass('d-none');
-  $('#userSQLInput').append('Declare\n\nBegin\n\nEND (Triggername);');
-}
+  $('#userSQLInput').append('Declare\n\nBegin\n\nEND (Triggername);');}
 else{
  alert('Oops! Something went wrong. Maybe you did not select a business rule type.');
  location.replace(index.html);
