@@ -116,16 +116,36 @@ function postTrigger() {
  }if ($("#CBUpdate").is(":checked"))
  {
   sessionStorage.setItem("selectCBU" , "update");
-  var inputCBI = sessionStorage.getItem("selectCBU");
+  var inputCBU = sessionStorage.getItem("selectCBU");
 }else{
  sessionStorage.setItem("selectCBU" , ""); 
 }if ($("#CBDelete").is(":checked"))
 {
   sessionStorage.setItem("selectCBD" , "delete");
-  var inputCBI = sessionStorage.getItem("selectCBD");
+  var inputCBD = sessionStorage.getItem("selectCBD");
 }else{
  sessionStorage.setItem("selectCBD" , ""); 
 } 
+
+var triggerEvents = "";
+
+if(inputCBI != undefined){
+  triggerEvents = triggerEvents + " Or " + inputCBI;
+}
+
+if (inputCBU != undefined) {
+  triggerEvents = triggerEvents + " Or " + inputCBU; 
+}
+
+if (inputCBD != undefined) {
+  triggerEvents = triggerEvents + " Or " + inputCBD; 
+}
+if(triggerEvents.match("^ Or ")){
+  var triggerEvents = triggerEvents.slice(4);
+}
+
+sessionStorage.setItem("event",triggerEvents);
+
 var inputName = $("#selectName").val();
 var inputTable1 = $("#selectTable1 :selected").val();
 var inputTrigger = $("#selectTrigger :selected").val();
