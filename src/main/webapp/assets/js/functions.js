@@ -1,10 +1,4 @@
-function sendBRT() {  $('#toCreate').on('click', function () {
-  $('#selectBRT').find("option:selected").text();   
-  selectedText = $('#selectBRT').find("option:selected").val();   
-  sessionStorage.setItem('BRT', selectedText); 
-}); 
-}
-
+//  initiate Variables
 var whatBRT = sessionStorage.getItem('BRT');
 var inputCBI;
 var inputCBU;
@@ -13,7 +7,16 @@ var inputCBFER;
 var amountOfFields;
 
 
+// This function sends the businessruletype from the specify page to the create or createfromsession page
+function sendBRT() {
+  $('#toCreate').on('click', function () {
+  $('#selectBRT').find("option:selected").text();   
+  selectedText = $('#selectBRT').find("option:selected").val();   
+  sessionStorage.setItem('BRT', selectedText); 
+}); 
+}
 
+// This functions 
 function specifyFunction() {
  $("#selectCategory").change(function () {
   if (typeof $(this).data('options') === "undefined") {
@@ -148,23 +151,27 @@ sessionStorage.setItem('inputRuleCompare' , inputRuleCompare);
 sessionStorage.setItem('inputValue2' , inputValue2);
 sessionStorage.setItem('inputTable2' , inputTable2);
 sessionStorage.setItem('inputColumn2' , inputColumn2);
+sessionStorage.setItem('inputValue2' , inputSQL);
 sessionStorage.setItem('inputError' , inputError);
 
 $.ajax({
  url: 'api/businessrule/new',
  type: 'POST',
  data: {
-  BusinessFunction : BRT,
-  BusinessName: inputName,
-  BusinessTable1: inputTable1,
-  BusinessColumn1: inputColumn1,
-  BusinessValue1: inputValue1,
-  BusinessRuleBetween: inputRuleBetween,
-  BusinessRuleCompare: inputRuleCompare,
-  BusinessValue2: inputValue2,
-  BusinessTable2: inputTable2,
-  BusinessColumn2: inputColumn2,
-  BusinessError: inputError
+  BusinessFunction    : BRT,
+  BusinessName        : inputName,
+  BusinessList        : fieldList,
+  BusinessTable1      : inputTable1,
+  BusinessTrigger     : inputTrigger, 
+  BusinessColumn1     : inputColumn1,
+  BusinessValue1      : inputValue1,
+  BusinessRuleBetween : inputRuleBetween,
+  BusinessRuleCompare : inputRuleCompare,
+  BusinessValue2      : inputValue2,
+  BusinessTable2      : inputTable2,
+  BusinessSQL         : inputSQL,
+  BusinessColumn2     : inputColumn2,
+  BusinessError       : inputError
 }
 })
 
