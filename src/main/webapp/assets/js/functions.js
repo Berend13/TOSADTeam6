@@ -197,9 +197,7 @@ $.ajax({
   BusinessSQL         : inputSQL,
   BusinessColumn2     : inputColumn2,
   BusinessError       : inputError,
-  businessEventInsert : inputCBI,
-  businessEventUpdate : inputCBU,
-  businessEventDelete : inputCBD
+  businessEvent       : triggerEvents
 }
 })
 
