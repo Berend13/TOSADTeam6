@@ -94,46 +94,48 @@
 
                 </div>
             </div>
-            </nav>
+        </nav>
 
         <!-- Start Main page -->
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <!-- Search entry for the table -->
-                                <div class="form-group" id="divSearch">
-                                    <div class="col-md-4">
-                                        <input id="search" name="search" type="text" placeholder="search..." class="form-control">
-                                    </div>
-                               </div>
-                               <!-- Table with all the business rules -->
-                                <div class="content table-responsive table-full-width">
-                                    <table class="table table-striped" id="businessRuleTable">
-                                        <thead>
-                                            <th>ID</th>
-                                            <th>Type</th>
-                                            <th>Name</th>
-                                            <th>Code</th>
-                                        </thead>
-                                        <tbody id="tbodyBusinessRuleTable">
-                                        </tbody>
-                                        <tfoot>
-                                            <th>ID</th>
-                                            <th>type</th>
-                                            <th>Name</th>
-                                            <th>Code</th>
-                                       </tfoot>
-                                    </table>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <!-- Search entry for the table -->
+                            <div class="form-group" id="divSearch">
+                                <div class="col-md-4">
+                                    <input id="search" name="search" type="text" placeholder="search..." class="form-control">
                                 </div>
                             </div>
+                            <!-- Table with all the business rules -->
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-striped" id="businessRuleTable">
+                                    <thead>
+                                        <th>ID</th>
+                                        <th>Type</th>
+                                        <th>Name</th>
+                                        <th>Code</th>
+                                        <th></th>
+                                    </thead>
+                                    <tbody id="tbodyBusinessRuleTable">
+                                    </tbody>
+                                    <tfoot>
+                                        <th>ID</th>
+                                        <th>type</th>
+                                        <th>Name</th>
+                                        <th>Code</th>
+                                        <th>-</th>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
-                   </div>
+                    </div>
                 </div>
-             </div>
-         </div>
+            </div>
+        </div>
     </div>
+</div>
 </body>
 
 <!--   Core JS Files   -->
@@ -159,7 +161,8 @@
 <script>
     getAllRules();                                             //Get all the rules from the database
     searchMachine();                                           //JS function for searching on the rule id, name and code  
-    saveTheName();                                          
+    saveTheName();                                         
+    deleteBRT(); 
 </script>
 
 </html>

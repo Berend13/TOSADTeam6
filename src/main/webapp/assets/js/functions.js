@@ -109,25 +109,23 @@ function postTrigger() {
   event.preventDefault();
   if ($("#CBInsert").is(":checked"))
   {
-    sessionStorage.setItem("selectCBI" , "checked");
+    sessionStorage.setItem("selectCBI" , "insert");
+    var inputCBI = sessionStorage.getItem("selectCBI");
   }else{
    sessionStorage.setItem("selectCBI" , ""); 
  }if ($("#CBUpdate").is(":checked"))
  {
-  sessionStorage.setItem("selectCBU" , "checked");
+  sessionStorage.setItem("selectCBU" , "update");
+  var inputCBI = sessionStorage.getItem("selectCBU");
 }else{
  sessionStorage.setItem("selectCBU" , ""); 
 }if ($("#CBDelete").is(":checked"))
 {
-  sessionStorage.setItem("selectCBD" , "checked");
+  sessionStorage.setItem("selectCBD" , "delete");
+  var inputCBI = sessionStorage.getItem("selectCBD");
 }else{
  sessionStorage.setItem("selectCBD" , ""); 
-}if ($("#CBFER").is(":checked"))
-{
-  sessionStorage.setItem("selectCBFER" , "checked");
-}else{
- sessionStorage.setItem("selectCBFER" , ""); 
-}
+} 
 var inputName = $("#selectName").val();
 var inputTable1 = $("#selectTable1 :selected").val();
 var inputTrigger = $("#selectTrigger :selected").val();
@@ -178,7 +176,10 @@ $.ajax({
   BusinessTable2      : inputTable2,
   BusinessSQL         : inputSQL,
   BusinessColumn2     : inputColumn2,
-  BusinessError       : inputError
+  BusinessError       : inputError,
+  businessEventInsert : inputCBI,
+  businessEventUpdate : inputCBU,
+  businessEventDelete : inputCBD
 }
 })
 
@@ -197,6 +198,20 @@ $.ajax({
 });
 }
 
+
+function saveTheName() {
+  $("#businessRuleTable").on("click", "a", function() {
+    sessionStorage.setItem("changeName", $(this).text());
+    sessionStorage.setItem("BRT", $(this).closest("tr").find(".saveBRT").text());
+  });
+};
+
+function deleteBRT() {
+  $("#businessRuleTable").on("click","button", function() {
+    var name = $(this).closest("tr").find("#name").text();
+    confirm(name);
+  });
+};
 
 //This functions shows the specific inputs for each businessrule
 function showHide() {
@@ -243,6 +258,7 @@ function showHide() {
   $("#divCheckboxI").removeClass("d-none");
   $("#divCheckboxFER").removeClass("d-none");
   $("#divUserSQL").removeClass("d-none");
+  $("#divError").addClass("d-none");
   $("#userSQLInput").append("Declare\n\nBegin\n\nEND (Triggername);");
 }else if (whatBRT == "EOR"){
   $("#title").append("Entity other rule");
@@ -254,6 +270,7 @@ function showHide() {
   $("#divCheckboxI").removeClass("d-none");
   $("#divCheckboxFER").removeClass("d-none");
   $("#divUserSQL").removeClass("d-none");
+  $("#divError").addClass("d-none");
   $("#userSQLInput").append("Declare\n\nBegin\n\nEND (Triggername);");
 }else if (whatBRT == "TOR"){
   $("#title").append("Tuple other rule");
@@ -265,6 +282,7 @@ function showHide() {
   $("#divCheckboxI").removeClass("d-none");
   $("#divCheckboxFER").removeClass("d-none");
   $("#divUserSQL").removeClass("d-none");
+  $("#divError").addClass("d-none");
   $("#userSQLInput").append("Declare\n\nBegin\n\nEND (Triggername);");
 }else{
  alert("Oops! Something went wrong. Maybe you did not select a business rule type.");
@@ -281,9 +299,9 @@ function getAllRules() {
    type: "GET",
    success: function(rules){
     $.each(rules, function(index, rule) {
-      var table_tr = "<tr><td>"  +rule.ID+   "</td><td>"  +rule.type+   "</td><td id='saveName'>"+rule.name+ "</td><td>"  +rule.code+ "</td></tr>";
-     $(table_tr).appendTo("#tbodyBusinessRuleTable");
-   });
+      var table_tr = "<tr><td>"  +rule.ID+   "</td><td class='saveBRT'>"  +rule.type+   "</td><td><a href='change.html' id='name'>" +rule.name+ "</a></td><td>"  +rule.code+ "</td><td><button class='btn btn-primary'>Delete</button></td></tr>";
+      $(table_tr).appendTo("#tbodyBusinessRuleTable");
+    });
   }
 });
 });
@@ -354,17 +372,14 @@ function createFromSession(){
    }
  });
 
-  if (checkCBI == "checked"){
+  if (checkCBI == "insert"){
     $("#CBInsert").attr("checked","");
   }
-  if (checkCBU == "checked"){
+  if (checkCBU == "update"){
     $("#CBUpdate").attr("checked","");
   }
-  if (checkCBD == "checked"){
+  if (checkCBD == "delete"){
     $("#CBDelete").attr("checked","");
-  }
-  if (checkCBFER == "checked"){
-    $("#CBFER").attr("checked","");
   }
 }
 
@@ -375,14 +390,10 @@ function removeField(){
 });
 }
 
-function saveTheName() {
-  $("#saveName").click(function() {
-    alert($("#saveName").text());
-  });
-};
 
-
-
+function createForChange(){
+  $("#selectName").val(sessionStorage.getItem("changeName"));
+}
 
 
 
