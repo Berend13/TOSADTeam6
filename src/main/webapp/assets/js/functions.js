@@ -69,7 +69,7 @@ function getTables(){
 }
 
 //This function retreives all the columns based on the table
-function getColumns(tableName, select,){
+function getColumns(tableName, select){
   $.ajax({
     url: "api/businessrule/columns/"+ tableName +"/" + whatBRT,
     type: "GET"
@@ -88,6 +88,13 @@ function getColumns(tableName, select,){
       });
     }
     if ($("#selectColumn2 option").length < 2 && select == "select2"){
+      $.each(columnName, function(index, name) {
+        var columnOption = "<option value=" +name.column+ ">"+name.column+"</option>";
+        $(columnOption).appendTo("#selectColumn2");
+      });
+    }
+    if (whatBRT == "TCR"){
+      $("#selectColumn2").empty();
       $.each(columnName, function(index, name) {
         var columnOption = "<option value=" +name.column+ ">"+name.column+"</option>";
         $(columnOption).appendTo("#selectColumn2");
@@ -274,7 +281,7 @@ function getAllRules() {
    type: "GET",
    success: function(rules){
     $.each(rules, function(index, rule) {
-     var table_tr = "<tr><td>"  +rule.ID+   "</td><td>"  +rule.name+ "</td><td>"  +rule.code+ "</td></tr>";
+      var table_tr = "<tr><td>"  +rule.ID+   "</td><td>"  +rule.type+   "</td><td id='saveName'>"+rule.name+ "</td><td>"  +rule.code+ "</td></tr>";
      $(table_tr).appendTo("#tbodyBusinessRuleTable");
    });
   }
@@ -368,6 +375,11 @@ function removeField(){
 });
 }
 
+function saveTheName() {
+  $("#saveName").click(function() {
+    alert($("#saveName").text());
+  });
+};
 
 
 

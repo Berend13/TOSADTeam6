@@ -75,7 +75,7 @@
                             <span class="icon-bar bar2"></span>
                             <span class="icon-bar bar3"></span>
                         </button>
-                        <a class="navbar-brand" href="#">specify business rule</a>
+                        <a class="navbar-brand" href="#">all business rules</a>
                     </div>
                     <!-- Notifications menu -->
                     <div class="collapse navbar-collapse">
@@ -113,6 +113,7 @@
                                     <table class="table table-striped" id="businessRuleTable">
                                         <thead>
                                             <th>ID</th>
+                                            <th>Type</th>
                                             <th>Name</th>
                                             <th>Code</th>
                                         </thead>
@@ -120,6 +121,7 @@
                                         </tbody>
                                         <tfoot>
                                             <th>ID</th>
+                                            <th>type</th>
                                             <th>Name</th>
                                             <th>Code</th>
                                        </tfoot>
@@ -156,7 +158,8 @@
 <!-- Functions -->
 <script>
     getAllRules();                                             //Get all the rules from the database
-    searchMachine();                                           //JS function for searching on the rule id, name and code 
+    searchMachine();                                           //JS function for searching on the rule id, name and code  
+    saveTheName();                                          
 </script>
 
 </html>
