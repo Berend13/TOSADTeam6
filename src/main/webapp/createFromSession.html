@@ -129,6 +129,56 @@
                                             </div>
                                         </div>
 
+                                        <div class="form-group d-none" id="divTriggerTiming" >
+                                            <label class="col-md-4 control-label" for="selectBeforeAfter">Timing</label>
+                                            <div class="col-md-4">
+                                                <select id="selectBeforeAfter" name="selectBeforeAfter" class="form-control">
+                                                    <option disabled selected value> -- select an option -- </option>
+                                                    <option value="before">Before</option>
+                                                    <option value="after">After</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Checkbox Other rules -->
+                                        <div class=" form-group d-none" id="divCheckboxI">
+                                            <label class="col-md-4"></label>
+                                            <div class="col-md-4">
+                                                <input id="CBInsert" class="styled" type="checkbox">
+                                                <label for="CBInsert">
+                                                    &nbsp; Insert
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class=" form-group d-none" id="divCheckboxU">
+                                            <label class="col-md-4" for=""></label>
+                                            <div class="col-md-4">
+                                                <input id="CBUpdate" class="styled" type="checkbox">
+                                                <label for="CBUpdate">
+                                                    &nbsp; update
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class=" form-group d-none" id="divCheckboxD">
+                                            <label class="col-md-4" for=""></label>
+                                            <div class="col-md-4">
+                                                <input id="CBDelete" class="styled" type="checkbox">
+                                                <label for="CBDelete">
+                                                    &nbsp; delete
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class=" form-group d-none" id="divCheckboxFER">
+                                            <label class="col-md-4" for=""></label>
+                                            <div class="col-md-4">
+                                                <input id="CBFER" class="styled" type="checkbox">
+                                                <label for="CBFER">
+                                                    &nbsp; For Each Row
+                                                </label>
+                                            </div>
+                                        </div>
+
+
                                         <div class="form-group d-none" id="divColumn1">
                                             <label class="col-md-4 control-label" for="selectColumn1">Column 1</label>
                                             <div class="col-md-4">
@@ -203,6 +253,28 @@
                                             <label class="col-md-4 control-label" for="value2Input">Second value</label>
                                             <div class="col-md-4">
                                                 <input id="value2Input" name="value2Input" type="number" placeholder="..." class="form-control input-md">
+                                            </div>
+                                        </div>
+                                        <div id="divList" class="form-group d-none">
+                                            <label class="col-md-4 control-label">List rule</label>
+                                            <div class="col-md-4">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control field_value" id="listInput" required="required">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default add_field_button" type="button">Add field</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="field_holder">
+                                            <!-- fields -->
+                                        </div>
+
+                                        <div class="form-group d-none" id="divUserSQL">
+                                            <label class="col-md-4 control-label" for="value2Input">SQL code:</label>
+                                            <div class="col-md-4">
+                                                <textarea id="userSQLInput" name="userSQlInput" class="form-control input-md" rows=10></textarea>
                                             </div>
                                         </div>
 
