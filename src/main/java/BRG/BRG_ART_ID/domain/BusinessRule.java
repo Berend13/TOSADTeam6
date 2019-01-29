@@ -5,6 +5,10 @@ public class BusinessRule {
 	private String name;
 	private String code;
 	
+	public BusinessRule() {
+		
+	}
+	
 	
 	public BusinessRule(int ID, String name, String code) {
 		this.ID = ID;

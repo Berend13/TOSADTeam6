@@ -4,9 +4,13 @@ import java.sql.*;
 import java.sql.Date;
 import java.util.*;
 
-import BRG.BRG_ART_ID.domain.BusinessRule;
-
 import javax.print.DocFlavor;
+
+import BRG.BRG_ART_ID.domain.BusinessRule;
+import BRG.BRG_ART_ID.domain.ACR;
+import BRG.BRG_ART_ID.domain.ALR;
+import BRG.BRG_ART_ID.domain.AOR;
+import BRG.BRG_ART_ID.domain.ARR;
 
 public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 	private static Connection conn;
@@ -36,7 +40,7 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 	// get all business rules
 
 	// create new business rule
-	public boolean saveBusinessRule(String BusinessFunction, String BusinessName, String BusinessTable1, String BusinessColumn1, int BusinessValue1, String BusinessRuleBetween, String BusinessRuleCompare, int BusinessValue2, String BusinessTable2, String BusinessColumn2, String BusinessError) throws SQLException {
+	public boolean saveBusinessRuleARR(String BusinessName, String BusinessTable1, String BusinessColumn1, int BusinessValue1, String BusinessRuleBetween, int BusinessValue2, String BusinessError) throws SQLException {
 		conn = BaseDao.getConnection();
 
 		String query = "{? = call ARR(?, ?, ?, ?, ?, ?, ?)}";
@@ -50,8 +54,6 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		statement.setString(8, BusinessError);
 		statement.registerOutParameter(1,Types.VARCHAR);
 
-
-		System.out.println(statement.toString());
 		int executeFunction = statement.executeUpdate();
 		System.out.println(executeFunction);
 		if (executeFunction > 0) {
