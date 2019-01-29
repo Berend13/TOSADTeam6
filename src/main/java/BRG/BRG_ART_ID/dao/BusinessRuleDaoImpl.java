@@ -91,17 +91,16 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 	// create new business rule
 
 	// create new business rule
-	public boolean saveBusinessRuleAOR(String businessName, String businessTable1, String businessTrigger, String businessSQL, 
-		String businessError) throws SQLException {
+	public boolean saveBusinessRuleAOR(String businessName, String businessTable1, String businessTrigger, String businessEvent, String businessSQL) throws SQLException {
 		conn = BaseDao.getConnection();
 
-		String query = "{? = call OTR(?, ?, ?, ?, ?, ?)}";
+		String query = "{? = call OTR(?, ?, ?, ?, ?)}";
 		CallableStatement statement = conn.prepareCall(query);
 		statement.setString(2, businessName);
 		statement.setString(3, businessTable1);
 		statement.setString(4, businessTrigger);
-		statement.setString(5, businessSQL);
-		statement.setString(6, businessError);
+		statement.setString(5, businessEvent);
+		statement.setString(6, businessSQL);
 		statement.registerOutParameter(1,Types.VARCHAR);
 
 		int executeFunction = statement.executeUpdate();

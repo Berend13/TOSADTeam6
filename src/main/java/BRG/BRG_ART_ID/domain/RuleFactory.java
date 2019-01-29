@@ -5,7 +5,7 @@ import java.util.List;
 
 public class RuleFactory {
 
-	public void createBusinessRule(String BusinessFunction, String BusinessName, String BusinessTable1, String BusinessColumn1, int BusinessValue1, String BusinessRuleBetween, String BusinessRuleCompare, int BusinessValue2, String BusinessTable2, String BusinessColumn2, String BusinessError, String BusinessTrigger, String BusinessList, String BusinessSQL) throws SQLException{
+	public void createBusinessRule(String BusinessFunction, String BusinessName, String BusinessTable1, String BusinessColumn1, int BusinessValue1, String BusinessRuleBetween, String BusinessRuleCompare, int BusinessValue2, String BusinessTable2, String BusinessColumn2, String BusinessError, String BusinessTrigger, String BusinessList, String BusinessSQL, String BusinessEvent) throws SQLException{
 
 		if (BusinessFunction.equals("ARR")) {
 			ARR arr = new ARR(BusinessName, BusinessTable1, BusinessColumn1, BusinessValue1, BusinessRuleBetween, BusinessValue2, BusinessError);	
@@ -16,7 +16,7 @@ public class RuleFactory {
 		}
 
 		if (BusinessFunction.equals("AOR")) {
-			AOR aor = new AOR(BusinessName, BusinessTable1, BusinessTrigger, BusinessSQL, BusinessError);
+			AOR aor = new AOR(BusinessName, BusinessTable1, BusinessTrigger, BusinessEvent, BusinessSQL);
 		}
 
 		if (BusinessFunction.equals("TCR")) {

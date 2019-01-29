@@ -9,9 +9,9 @@ public class AOR extends RuleFactory{
 	private BusinessRuleDaoImpl ruleImpl = new BusinessRuleDaoImpl();
 
 
-	public AOR(String businessName, String businessTable1, String businessTrigger, String businessSQL,String businessError) throws SQLException {
+	public AOR(String businessName, String businessTable1, String businessTrigger, String businessEvent, String businessSQL) throws SQLException {
 		super();
 		
-		ruleImpl.saveBusinessRuleAOR(businessName, businessTable1, businessTrigger, businessSQL, businessError);
+		ruleImpl.saveBusinessRuleAOR(businessName, businessTable1, businessTrigger, businessEvent, businessSQL);
 	}
 }

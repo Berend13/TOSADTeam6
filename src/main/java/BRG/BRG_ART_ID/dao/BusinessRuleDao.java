@@ -13,8 +13,7 @@ public interface BusinessRuleDao {
 
     public boolean saveBusinessRuleACR(String BusinessName, String BusinessTable1, String BusinessColumn1, String BusinessRuleCompare, int BusinessValue2, String BusinessError) throws SQLException;
 
-    public boolean saveBusinessRuleAOR(String BusinessName, String BusinessTable1, String BusinessTrigger, String BusinessSQL, 
-		String BusinessError) throws SQLException;
+    public boolean saveBusinessRuleAOR(String BusinessName, String BusinessTable1, String BusinessTrigger, String BusinessEvent, String BusinessSQL) throws SQLException;
 
     public boolean saveBusinessRuleTCR(String BusinessName, String BusinessTable1, String BusinessColumn1, 
 		String BusinessRuleCompare, String BusinessColumn2 , String BusinessError) throws SQLException;
