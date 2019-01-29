@@ -62,6 +62,33 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		conn.close();		
 		return true;
 	}
+	
+	
+	public boolean saveBusinessRuleTCR(String businessName, String businessTable1, String businessColumn1, 
+			String BusinessRuleCompare, String BusinessColumn2 , String businessError) throws SQLException {
+		conn = BaseDao.getConnection();
+
+		String query = "{? = call TCR(?, ?, ?, ?, ?, ?)}";
+		CallableStatement statement = conn.prepareCall(query);
+		statement.setString(2, businessName);
+		statement.setString(3, businessTable1);
+		statement.setString(4, businessColumn1);
+		statement.setString(5, BusinessRuleCompare);
+		statement.setString(6, BusinessColumn2);
+		statement.setString(7, businessError);
+		statement.registerOutParameter(1,Types.VARCHAR);
+
+		int executeFunction = statement.executeUpdate();
+		System.out.println(executeFunction);
+		if (executeFunction > 0) {
+			System.out.println("Business rule aangemaakt");
+		}
+		conn.close();		
+		return true;
+	}
+	
+	
+	
 	// create new business rule
 
 		// create new business rule
