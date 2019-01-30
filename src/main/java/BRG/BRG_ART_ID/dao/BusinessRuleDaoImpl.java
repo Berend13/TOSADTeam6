@@ -43,20 +43,23 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 	// verwijderd business rule
 	public boolean delete(String BusinessName) throws SQLException {
 		conn = BaseDao.getConnection();
+		Statement stmt = null;
 
 		String deleteTrigger = "DELETE FROM BUSINESS_RULE WHERE NAME = ?";
 		PreparedStatement statementDelete = conn.prepareStatement(deleteTrigger);
 		statementDelete.setString(1, BusinessName);
-
-
-		String dropTrigger = "DROP TRIGGER ?"; 
-		PreparedStatement statementDrop = conn.prepareStatement(dropTrigger);
-		statementDrop.setString(1, BusinessName.toUpperCase());
-		System.out.println(BusinessName.toUpperCase());
+		
+		
+        
+		// conn dropTrigger = "DROP TRIGGER " + BusinessName; 
+		// PreparedStatement statementDrop = conn.prepareStatement(dropTrigger);
+		// statementDrop.setString(1, BusinessName.toUpperCase());
+		// System.out.println(BusinessName.toUpperCase());
 
 		int rowsDeleted = statementDelete.executeUpdate();
-		int triggersDropped = statementDrop.executeUpdate();
-		if (rowsDeleted > 0 && triggersDropped > 0) {
+		if (rowsDeleted > 0) {
+		    stmt = conn.createStatement();
+            stmt.execute("DROP TRIGGER " + BusinessName);
 			System.out.println("Business Rule verwijderd");
 			conn.close();
 			return true;
