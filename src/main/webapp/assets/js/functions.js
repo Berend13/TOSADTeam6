@@ -268,7 +268,7 @@ function deleteBRT() {
   $("#businessRuleTable").on("click","button", function() {
     var name = $(this).closest("tr").find("#name").text();
     if(confirm(name)){
-      window.location.reload(); 
+      // window.location.reload(); 
     };
 
     $.ajax({
