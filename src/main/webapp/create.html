@@ -62,7 +62,7 @@
                     </li>
                     <li>
                         <a href="index.html">
-                            <i class="ti-user"></i>
+                            <i class="ti-user logout"></i>
                             <p>log out</p>
                         </a>
                     </li>
@@ -121,7 +121,7 @@
                                         <div class="form-group" id="divName">
                                             <label class="col-md-4 control-label" for="selectName" id="labelName">Trigger name</label>
                                             <div class="col-md-4">
-                                                <input id="selectName" name="selectName" type="text" placeholder="..." class="form-control input-md" onkeypress="return noSpace(event) ">
+                                                <input maxlength="15" id="selectName" name="selectName" type="text" placeholder="..." class="form-control input-md" onkeypress="return noSpace(event) ">
                                             </div>
                                         </div>
 
@@ -327,7 +327,7 @@
 <script src="assets/js/login.js"></script>
 
 <!-- Shared functions -->
-<script>successDangerNotification();</script>                  <!-- Notification center -->
+<script>successDangerNotification(); logOut();</script>        <!-- Notification center and logging out -->
 
 <!-- Functions -->
 <script>

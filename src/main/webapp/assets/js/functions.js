@@ -199,8 +199,13 @@ var BRT = sessionStorage.getItem("BRT");
 var fields = $(".field_value");
 var fieldList = [];
 $.each(fields, function(index, field) {
-  fieldList.push($(field).val());
+  field = "'" + ($(field).val()) + "'";
+  fieldList.push(field);
 });
+
+console.log(fieldList);
+var yeet = String(fieldList);
+console.log(yeet);
 
 sessionStorage.setItem("fieldList", fieldList);
 sessionStorage.setItem("inputName" , inputName);
