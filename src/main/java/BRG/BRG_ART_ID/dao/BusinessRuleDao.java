@@ -19,6 +19,8 @@ public interface BusinessRuleDao {
 
     public boolean saveBusinessRuleIECR(String BusinessName, String BusinessTable1, String BusinessColumn1, String BusinessRuleCompare, String BusinessTable2, String BusinessColumn2, String BusinessError) throws SQLException;
 
+    public boolean saveBusinessRuleALR(String BusinessName, String BusinessTable1, String BusinessColumn1, String BusinessList, String BusinessError) throws SQLException;
+
      public boolean saveBusinessRuleAOR(String BusinessName, String BusinessTable1, String BusinessTrigger, String BusinessEvent, String BusinessSQL) throws SQLException;
 
      public boolean saveBusinessRuleTOR(String BusinessName, String BusinessTable1, String BusinessTrigger, String BusinessEvent, String BusinessSQL) throws SQLException;

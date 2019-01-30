@@ -24,6 +24,10 @@ public class RuleFactory {
 			IECR iecr = new IECR(BusinessName, BusinessTable1, BusinessColumn1, BusinessRuleCompare, BusinessTable2, BusinessColumn2, BusinessError);
 		}
 
+		if (BusinessFunction.equals("ALR")) {
+			ALR alr = new ALR(BusinessName, BusinessTable1, BusinessColumn1, BusinessList, BusinessError);	
+		}
+
 		if (BusinessFunction.equals("AOR")) {
 			AOR aor = new AOR(BusinessName, BusinessTable1, BusinessTrigger, BusinessEvent, BusinessSQL);
 		}
