@@ -203,9 +203,7 @@ $.each(fields, function(index, field) {
   fieldList.push(field);
 });
 
-console.log(fieldList);
-var yeet = String(fieldList);
-console.log(yeet);
+var fieldList = String(fieldList);
 
 sessionStorage.setItem("fieldList", fieldList);
 sessionStorage.setItem("inputName" , inputName);
