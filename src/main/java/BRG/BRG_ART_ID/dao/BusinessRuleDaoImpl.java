@@ -48,13 +48,6 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		String deleteTrigger = "DELETE FROM BUSINESS_RULE WHERE NAME = ?";
 		PreparedStatement statementDelete = conn.prepareStatement(deleteTrigger);
 		statementDelete.setString(1, BusinessName);
-		
-		
-        
-		// conn dropTrigger = "DROP TRIGGER " + BusinessName; 
-		// PreparedStatement statementDrop = conn.prepareStatement(dropTrigger);
-		// statementDrop.setString(1, BusinessName.toUpperCase());
-		// System.out.println(BusinessName.toUpperCase());
 
 		int rowsDeleted = statementDelete.executeUpdate();
 		if (rowsDeleted > 0) {

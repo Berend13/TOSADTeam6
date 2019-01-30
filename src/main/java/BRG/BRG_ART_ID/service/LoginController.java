@@ -30,7 +30,7 @@ import BRG.BRG_ART_ID.dao.UserDaoImpl;
 import BRG.BRG_ART_ID.domain.User;
 
 @Path("/auth")
-public class LoginService {
+public class LoginController {
 
 	// endpoint voor het inloggen in de cms
 	// returned user of null

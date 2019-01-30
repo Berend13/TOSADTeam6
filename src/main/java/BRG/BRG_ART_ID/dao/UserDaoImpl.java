@@ -28,7 +28,7 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 			String password = result.getString("password");
 			Date created_date = result.getDate("created_date");
 			
-			User User = new User(ID, name, email, password, type, created_date);
+			User User = new User(ID, name, email, password);
 			Users.add(User);
 		}
 		conn.close();
@@ -56,39 +56,18 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 			String password = result.getString("password");
 			Date created_date = result.getDate("created_date");
 			
-			user = new User(ID, name, email, password, type, created_date);
+			user = new User(ID, name, email, password);
 		}
 		conn.close();
 		result.close();
 		return user;
 	}
 
-	@Override
-	public User save(User User) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public User update(User User) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public boolean delete(User User) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public void closeConnection() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 	public User login(String email, String password) throws SQLException {
 		conn = BaseDao.getConnection();
 
-		PreparedStatement statement = conn.prepareStatement("SELECT * FROM \"user\" WHERE \"email\" = ? AND \"password\" = ?");    
+		PreparedStatement statement = conn.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?");    
 		statement.setString(1, email);
 		statement.setString(2, password);  
 		ResultSet result = statement.executeQuery();
@@ -99,10 +78,9 @@ public class UserDaoImpl extends BaseDao implements UserDao{
 		while (result.next()) {
 			int ID = result.getInt("id");
 			String name = result.getString("name");
-			String type = result.getString("type");
 			email = result.getString("email");
 		
-			user = new User(ID, name, email,  type);
+			user = new User(ID, name, email);
 		}
 		conn.close();
 		result.close();
