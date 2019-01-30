@@ -8,61 +8,6 @@ import BRG.BRG_ART_ID.domain.User;
 
 public class UserDaoImpl extends BaseDao implements UserDao{
 	private static Connection conn;
-	private List<User> Users = new ArrayList<User>();
-	
-	// haalt alle users
-	// wordt niet gebruikt in deze versie
-	public List<User> findAll() throws SQLException {
-		List<User> Useren = new ArrayList<User>();
-		conn = BaseDao.getConnection();
-
-		String query = "SELECT * FROM \"user\"";
-		Statement statement = conn.createStatement();
-		ResultSet result = statement.executeQuery(query);
-		
-		while (result.next()) {
-			int ID = result.getInt("id");
-			String name = result.getString("name");
-			String type = result.getString("type");
-			String email = result.getString("email");
-			String password = result.getString("password");
-			Date created_date = result.getDate("created_date");
-			
-			User User = new User(ID, name, email, password);
-			Users.add(User);
-		}
-		conn.close();
-		result.close();
-		return Users;
-	}
-	
-	// haalt user by id
-	// wordt gebruikt om de user_ids om te zetten in namen in de json respoonses en views client en cms
-	public User findByID(int ID) throws SQLException {
-		conn = BaseDao.getConnection();
-
-		PreparedStatement statement = conn.prepareStatement("SELECT * FROM \"user\" WHERE \"id\" = ?");    
-		statement.setInt(1, ID);    
-		ResultSet result = statement.executeQuery();
-		
-		// Iets doen met de resultaten
-		User user = null;
-		
-		while (result.next()) {
-			ID = result.getInt("id");
-			String name = result.getString("name");
-			String type = result.getString("type");
-			String email = result.getString("email");
-			String password = result.getString("password");
-			Date created_date = result.getDate("created_date");
-			
-			user = new User(ID, name, email, password);
-		}
-		conn.close();
-		result.close();
-		return user;
-	}
-
 	
 	public User login(String email, String password) throws SQLException {
 		conn = BaseDao.getConnection();

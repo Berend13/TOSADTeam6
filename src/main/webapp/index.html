@@ -39,13 +39,9 @@
           <!-- Login Form -->
           <form class="form-horizontal" method="POST">
             <h3>Business rule generator</h3>
-            <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-            <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+            <input type="text" id="email" class="fadeIn second" name="login" placeholder="email">
+            <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
             <input type="submit" class="fadeIn fourth" id="login_bttn" value="Log In">
-            <a href="home.html">
-              <i class="ti-home"></i>
-              <p>Home </p>
-            </a>
           </form>
         </div>
       </div>
@@ -72,6 +68,7 @@
   <script>
     login();
     sessionStorage.clear();
+    checkLogin("index");
 
   </script>
 

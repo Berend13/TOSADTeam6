@@ -105,6 +105,10 @@ function getLastRule() {
 });
 }
 
+function setUsername(){
+  $("#userName").text(sessionStorage.getItem("name"));
+}
+
 //This function retreives all the columns based on the table
 function getColumns(tableName, select){
   $.ajax({
@@ -268,7 +272,7 @@ function deleteBRT() {
   $("#businessRuleTable").on("click","button", function() {
     var name = $(this).closest("tr").find("#name").text();
     if(confirm(name)){
-      // window.location.reload(); 
+      window.location.reload(); 
     };
 
     $.ajax({

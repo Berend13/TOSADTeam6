@@ -6,21 +6,20 @@ function login() {
 		var password = $("#password").val();
 
 		$.ajax({
-			url: '/api/auth/login',
+			url: 'api/auth/login',
 			type: 'POST',
 			data: {email: email, password: password},
 		})
 		.done(function(response) {
 			if(response == null){
-				swal("Oops password of email is fout");
+				$.notify({title: "<b>Unfortunately...</b>", message: "The email or password is incorrect."},{type: "danger"});
 			}else{
-				swal("Login successvol");
+				$.notify({title: "<b>Success!</b>", message: "Logged in!"},{type: "success"});
 
 				// opslaan in session storage
 				window.sessionStorage.setItem("id", response.id);
 				window.sessionStorage.setItem("name", response.name);
 				window.sessionStorage.setItem("email", response.email);
-				window.sessionStorage.setItem("type", response.type);
 
 				// redirect
 				window.location.href = 'home.html';
@@ -66,18 +65,15 @@ function logOut() {
 
 
 function checkLogin(page) {
-	var id = sessionStorage.getItem("id");
 	var name = sessionStorage.getItem("name");
-	var email = sessionStorage.getItem("email");
-	var type = sessionStorage.getItem("type");	
 
-	if (id == undefined || name == undefined || email == undefined || type == undefined) {
-		if (page != 'login') {
+	if (name == undefined) {
+		if (page != 'index') {
 			window.location.href = 'index.html';
 			sessionStorage.clear();
 		}
 	}else{
-		if (page == 'login') {
+		if (page == 'index') {
 			window.location.href = 'home.html';
 		}
 	}
