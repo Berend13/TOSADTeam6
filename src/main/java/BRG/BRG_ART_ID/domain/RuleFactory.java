@@ -22,5 +22,9 @@ public class RuleFactory {
 		if (BusinessFunction.equals("TCR")) {
 			TCR tcr = new TCR(BusinessName, BusinessTable1, BusinessColumn1, BusinessRuleCompare, BusinessColumn2, BusinessError);
 		}
+
+		if (BusinessFunction.equals("IECR")) {
+			IECR iecr = new IECR(BusinessName, BusinessTable1, BusinessColumn1, BusinessRuleCompare, BusinessTable2, BusinessColumn2, BusinessError);
+		}
 	}
 }

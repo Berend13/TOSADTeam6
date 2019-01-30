@@ -8,11 +8,11 @@ public class TCR extends BusinessRule {
 	private BusinessRuleDaoImpl ruleImpl = new BusinessRuleDaoImpl();
 	
 	public TCR(String businessName, String businessTable1, String businessColumn1, 
-			String businessRuleCompare, String businessColumn2 , String businessError) throws SQLException {
-			super();
-			
-			ruleImpl.saveBusinessRuleTCR(businessName, businessTable1, businessColumn1, businessRuleCompare, businessColumn2 , businessError);
+		String businessRuleCompare, String businessColumn2 , String businessError) throws SQLException {
+		super();
+		
+		ruleImpl.saveBusinessRuleTCR(businessName, businessTable1, businessColumn1, businessRuleCompare, businessColumn2 , businessError);
 
-			
-}
+		
+	}
 }
