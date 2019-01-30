@@ -23,7 +23,7 @@ function login() {
 				window.sessionStorage.setItem("type", response.type);
 
 				// redirect
-				window.location.href = 'http://hiphopsu.herokuapp.com/cms/views/home.html';
+				window.location.href = 'home.html';
 
 				
 			}
@@ -73,12 +73,12 @@ function checkLogin(page) {
 
 	if (id == undefined || name == undefined || email == undefined || type == undefined) {
 		if (page != 'login') {
-			window.location.href = 'http://hiphopsu.herokuapp.com/cms/';
+			window.location.href = 'index.html';
 			sessionStorage.clear();
 		}
 	}else{
 		if (page == 'login') {
-			window.location.href = 'http://hiphopsu.herokuapp.com/cms/views/home.html';
+			window.location.href = 'home.html';
 		}
 	}
 }

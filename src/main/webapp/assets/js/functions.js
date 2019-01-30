@@ -68,6 +68,43 @@ function getTables(){
   });
 }
 
+function getAmountTables(){
+  $.ajax({
+    url: "api/businessrule/tables",
+    type: "GET",
+  })
+  .done(function(tableName) {
+    var theTables = tableName.length;
+    $("#amountOfTables").text(theTables);
+  });
+}
+
+function getAmountRules() {
+ $(document).ready(function () {
+  $.ajax({
+   url: "api/businessrule/all",
+   type: "GET",
+   success: function(rules){
+    var theRules = rules.length;
+    $("#amountOfRules").text(theRules);
+  }
+});
+});
+}
+
+function getLastRule() {
+ $(document).ready(function () {
+  $.ajax({
+   url: "api/businessrule/all",
+   type: "GET",
+   success: function(rules){
+    var lastRule = rules[0].name;
+    $("#lastRule").text(lastRule);
+  }
+});
+});
+}
+
 //This function retreives all the columns based on the table
 function getColumns(tableName, select){
   $.ajax({
@@ -227,7 +264,9 @@ function saveTheName() {
 function deleteBRT() {
   $("#businessRuleTable").on("click","button", function() {
     var name = $(this).closest("tr").find("#name").text();
-    confirm(name);
+    if(confirm(name)){
+      window.location.reload(); 
+    };
 
     $.ajax({
       url: 'api/businessrule/delete',
@@ -243,7 +282,7 @@ function deleteBRT() {
     .always(function() {
       console.log("complete");
     });
-    
+
   });
 };
 
