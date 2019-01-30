@@ -1,7 +1,6 @@
 package BRG.BRG_ART_ID.domain;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import BRG.BRG_ART_ID.dao.BusinessRuleDaoImpl;
 

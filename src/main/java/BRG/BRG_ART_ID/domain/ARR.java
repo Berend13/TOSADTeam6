@@ -13,8 +13,5 @@ public class ARR extends BusinessRule{
 		super();
 		
 		ruleImpl.saveBusinessRuleARR(businessName, businessTable1, businessColumn1, businessValue1, businessRuleBetween , businessValue2, businessError);
-	}
-
-
-	
+	}	
 }

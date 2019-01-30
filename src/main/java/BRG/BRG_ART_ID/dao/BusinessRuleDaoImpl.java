@@ -58,10 +58,14 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		int triggersDropped = statementDrop.executeUpdate();
 		if (rowsDeleted > 0 && triggersDropped > 0) {
 			System.out.println("Business Rule verwijderd");
+			conn.close();
 			return true;
+		}else {
+			conn.close();
+			return false;
 		}
-		conn.close();
-		return false;
+		
+		
 	}
 
 	// create new business rule
@@ -82,9 +86,13 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		int executeFunction = statement.executeUpdate();
 		if (executeFunction > 0) {
 			System.out.println("Business rule aangemaakt");
+			conn.close();		
+			return true;
+		}else {
+			conn.close();		
+			return false;
 		}
-		conn.close();		
-		return true;
+		
 	}
 	
 	// create new business rule
@@ -106,32 +114,15 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		int executeFunction = statement.executeUpdate();
 		if (executeFunction > 0) {
 			System.out.println("Business rule aangemaakt");
+			conn.close();		
+			return true;
+		}else {
+			conn.close();		
+			return false;
 		}
-		conn.close();		
-		return true;
+		
 	}
 	// create new business rule
-
-	// create new business rule
-	public boolean saveBusinessRuleAOR(String businessName, String businessTable1, String businessTrigger, String businessEvent, String businessSQL) throws SQLException {
-		conn = BaseDao.getConnection();
-
-		String query = "{? = call OTR(?, ?, ?, ?, ?)}";
-		CallableStatement statement = conn.prepareCall(query);
-		statement.setString(2, businessName);
-		statement.setString(3, businessTable1);
-		statement.setString(4, businessTrigger);
-		statement.setString(5, businessEvent);
-		statement.setString(6, businessSQL);
-		statement.registerOutParameter(1,Types.VARCHAR);
-
-		int executeFunction = statement.executeUpdate();
-		if (executeFunction > 0) {
-			System.out.println("Business rule aangemaakt");
-		}
-		conn.close();		
-		return true;
-	}
 
 	// create new business rule
 	public boolean saveBusinessRuleTCR(String businessName, String businessTable1, String businessColumn1, 
@@ -151,9 +142,13 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		int executeFunction = statement.executeUpdate();
 		if (executeFunction > 0) {
 			System.out.println("Business rule aangemaakt");
+			conn.close();		
+			return true;
+		}else {
+			conn.close();		
+			return false;
 		}
-		conn.close();		
-		return true;
+		
 	}
 	// create new business rule
 
@@ -175,11 +170,88 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		int executeFunction = statement.executeUpdate();
 		if (executeFunction > 0) {
 			System.out.println("Business rule aangemaakt");
+			conn.close();		
+			return true;
+		}else {
+			conn.close();		
+			return false;
 		}
-		conn.close();		
-		return true;
 	}
 	// create new business rule
+
+	// create new business rule
+	public boolean saveBusinessRuleAOR(String businessName, String businessTable1, String businessTrigger, String businessEvent, String businessSQL) throws SQLException {
+		conn = BaseDao.getConnection();
+
+		String query = "{? = call OTR(?, ?, ?, ?, ?)}";
+		CallableStatement statement = conn.prepareCall(query);
+		statement.setString(2, businessName);
+		statement.setString(3, businessTable1);
+		statement.setString(4, businessTrigger);
+		statement.setString(5, businessEvent);
+		statement.setString(6, businessSQL);
+		statement.registerOutParameter(1,Types.VARCHAR);
+
+		int executeFunction = statement.executeUpdate();
+		if (executeFunction > 0) {
+			System.out.println("Business rule aangemaakt");
+			conn.close();		
+			return true;
+		}else {
+			conn.close();		
+			return false;
+		}
+	}
+
+	// create new business rule
+	public boolean saveBusinessRuleTOR(String businessName, String businessTable1, String businessTrigger, String businessEvent, String businessSQL) throws SQLException {
+		conn = BaseDao.getConnection();
+
+		String query = "{? = call OTR(?, ?, ?, ?, ?)}";
+		CallableStatement statement = conn.prepareCall(query);
+		statement.setString(2, businessName);
+		statement.setString(3, businessTable1);
+		statement.setString(4, businessTrigger);
+		statement.setString(5, businessEvent);
+		statement.setString(6, businessSQL);
+		statement.registerOutParameter(1,Types.VARCHAR);
+
+		int executeFunction = statement.executeUpdate();
+		if (executeFunction > 0) {
+			System.out.println("Business rule aangemaakt");
+			conn.close();		
+			return true;
+		}else {
+			conn.close();		
+			return false;
+		}
+	}
+
+
+	// create new business rule
+	public boolean saveBusinessRuleEOR(String businessName, String businessTable1, String businessTrigger, String businessEvent, String businessSQL) throws SQLException {
+		conn = BaseDao.getConnection();
+
+		String query = "{? = call OTR(?, ?, ?, ?, ?)}";
+		CallableStatement statement = conn.prepareCall(query);
+		statement.setString(2, businessName);
+		statement.setString(3, businessTable1);
+		statement.setString(4, businessTrigger);
+		statement.setString(5, businessEvent);
+		statement.setString(6, businessSQL);
+		statement.registerOutParameter(1,Types.VARCHAR);
+
+		int executeFunction = statement.executeUpdate();
+		if (executeFunction > 0) {
+			System.out.println("Business rule aangemaakt");
+			conn.close();		
+			return true;
+		}else {
+			conn.close();		
+			return false;
+		}
+	}
+
 	
 	public List<String> getAllTables() throws SQLException {
 		List<String> tables = new ArrayList<String>();

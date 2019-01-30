@@ -15,9 +15,6 @@ public class RuleFactory {
 			ACR acr = new ACR(BusinessName, BusinessTable1, BusinessColumn1, BusinessRuleCompare, BusinessValue2, BusinessError);
 		}
 
-		if (BusinessFunction.equals("AOR")) {
-			AOR aor = new AOR(BusinessName, BusinessTable1, BusinessTrigger, BusinessEvent, BusinessSQL);
-		}
 
 		if (BusinessFunction.equals("TCR")) {
 			TCR tcr = new TCR(BusinessName, BusinessTable1, BusinessColumn1, BusinessRuleCompare, BusinessColumn2, BusinessError);
@@ -25,6 +22,18 @@ public class RuleFactory {
 
 		if (BusinessFunction.equals("IECR")) {
 			IECR iecr = new IECR(BusinessName, BusinessTable1, BusinessColumn1, BusinessRuleCompare, BusinessTable2, BusinessColumn2, BusinessError);
+		}
+
+		if (BusinessFunction.equals("AOR")) {
+			AOR aor = new AOR(BusinessName, BusinessTable1, BusinessTrigger, BusinessEvent, BusinessSQL);
+		}
+
+		if (BusinessFunction.equals("TOR")) {
+			TOR tor = new TOR(BusinessName, BusinessTable1, BusinessTrigger, BusinessEvent, BusinessSQL);
+		}
+
+		if (BusinessFunction.equals("EOR")) {
+			EOR eor = new EOR(BusinessName, BusinessTable1, BusinessTrigger, BusinessEvent, BusinessSQL);
 		}
 	}
 }
