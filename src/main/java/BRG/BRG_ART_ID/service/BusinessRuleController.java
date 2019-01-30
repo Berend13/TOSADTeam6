@@ -43,7 +43,6 @@ public class BusinessRuleController {
 		BusinessRuleDaoImpl BusinessRuleServiceInst = new BusinessRuleDaoImpl();
 		RuleFactory RuleFactoryServiceInst = new RuleFactory();
 		Boolean result = null;
-		System.out.println(BusinessList);
 
 		RuleFactoryServiceInst.createBusinessRule(BusinessFunction, BusinessName, BusinessTable1, BusinessColumn1, BusinessValue1, BusinessRuleBetween, BusinessRuleCompare, BusinessValue2, BusinessTable2, BusinessColumn2, BusinessError, BusinessTrigger, BusinessList, BusinessSQL, BusinessEvent);
 

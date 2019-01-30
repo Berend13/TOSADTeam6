@@ -181,31 +181,27 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 
 		// create new business rule
 	public boolean saveBusinessRuleALR(String BusinessName, String BusinessTable1, String BusinessColumn1, String BusinessList, String BusinessError) throws SQLException {
-		// conn = BaseDao.getConnection();
-
-		System.out.println(BusinessList);
+		conn = BaseDao.getConnection();
 		
 
-		// String query = "{? = call ALR4(?, ?, ?, ?, ?, ?)}";
-		// CallableStatement statement = conn.prepareCall(query);
-		// statement.setString(2, BusinessName);
-		// statement.setString(3, BusinessTable1);
-		// statement.setString(4, BusinessColumn1);
-		// statement.setString(5, BusinessList);
-		// statement.setString(6, BusinessError);
-		// statement.registerOutParameter(1,Types.VARCHAR);
+		String query = "{? = call ALR(?, ?, ?, ?, ?)}";
+		CallableStatement statement = conn.prepareCall(query);
+		statement.setString(2, BusinessName);
+		statement.setString(3, BusinessTable1);
+		statement.setString(4, BusinessColumn1);
+		statement.setString(5, BusinessList);
+		statement.setString(6, BusinessError);
+		statement.registerOutParameter(1,Types.VARCHAR);
 
-		// int executeFunction = statement.executeUpdate();
-		// if (executeFunction > 0) {
-		// 	System.out.println("Business rule aangemaakt");
-		// 	conn.close();		
-		// 	return true;
-		// }else {
-		// 	conn.close();		
-		// 	return false;
-		// }
-		return false;
-		
+		boolean executeFunction = statement.execute();
+		if (executeFunction == true) {
+			System.out.println("Business rule aangemaakt");
+			conn.close();		
+			return true;
+		}else {
+			conn.close();		
+			return false;
+		}
 	}
 
 	// create new business rule
