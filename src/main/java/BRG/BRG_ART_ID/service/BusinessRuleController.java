@@ -46,10 +46,21 @@ public class BusinessRuleController {
 
 		RuleFactoryServiceInst.createBusinessRule(BusinessFunction, BusinessName, BusinessTable1, BusinessColumn1, BusinessValue1, BusinessRuleBetween, BusinessRuleCompare, BusinessValue2, BusinessTable2, BusinessColumn2, BusinessError, BusinessTrigger, BusinessList, BusinessSQL, BusinessEvent);
 
-	return Response.ok().build();
+		return Response.ok().build();
 		
 	}
 	// create new business rule
+
+	// verwijderd businessrule
+	@DELETE
+	@Path("/delete")
+	@Produces("application/json")
+	public Response deleteArtikel(@FormParam("BusinessName") String businessName) throws SQLException {
+		BusinessRuleDaoImpl BusinessRuleServiceInst = new BusinessRuleDaoImpl();
+
+		BusinessRuleServiceInst.delete(businessName);
+		return Response.ok().build();
+	}
 
 	// get all business rules
 	@GET

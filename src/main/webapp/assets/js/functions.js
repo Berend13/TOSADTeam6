@@ -228,6 +228,22 @@ function deleteBRT() {
   $("#businessRuleTable").on("click","button", function() {
     var name = $(this).closest("tr").find("#name").text();
     confirm(name);
+
+    $.ajax({
+      url: 'api/businessrule/delete',
+      type: 'DELETE',
+      data: {BusinessName: name}
+    })
+    .done(function() {
+      console.log("success");
+    })
+    .fail(function() {
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
+    });
+    
   });
 };
 

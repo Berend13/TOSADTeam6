@@ -8,6 +8,7 @@ import BRG.BRG_ART_ID.domain.BusinessRule;
 public interface BusinessRuleDao {
 
     public List<BusinessRule> findAll() throws SQLException;
+    public boolean delete(String BusinessName) throws SQLException;
 
     public boolean saveBusinessRuleARR(String BusinessName, String BusinessTable1, String BusinessColumn1, int BusinessValue1, String BusinessRuleBetween, int BusinessValue2, String BusinessError) throws SQLException;
 

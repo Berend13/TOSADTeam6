@@ -40,6 +40,30 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 	}
 	// get all business rules
 
+	// verwijderd business rule
+	public boolean delete(String BusinessName) throws SQLException {
+		conn = BaseDao.getConnection();
+
+		String deleteTrigger = "DELETE FROM BUSINESS_RULE WHERE NAME = ?";
+		PreparedStatement statementDelete = conn.prepareStatement(deleteTrigger);
+		statementDelete.setString(1, BusinessName);
+
+
+		String dropTrigger = "DROP TRIGGER ?"; 
+		PreparedStatement statementDrop = conn.prepareStatement(dropTrigger);
+		statementDrop.setString(1, BusinessName.toUpperCase());
+		System.out.println(BusinessName.toUpperCase());
+
+		int rowsDeleted = statementDelete.executeUpdate();
+		int triggersDropped = statementDrop.executeUpdate();
+		if (rowsDeleted > 0 && triggersDropped > 0) {
+			System.out.println("Business Rule verwijderd");
+			return true;
+		}
+		conn.close();
+		return false;
+	}
+
 	// create new business rule
 	public boolean saveBusinessRuleARR(String BusinessName, String BusinessTable1, String BusinessColumn1, int BusinessValue1, String BusinessRuleBetween, int BusinessValue2, String BusinessError) throws SQLException {
 		conn = BaseDao.getConnection();
@@ -56,7 +80,6 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		statement.registerOutParameter(1,Types.VARCHAR);
 
 		int executeFunction = statement.executeUpdate();
-		System.out.println(executeFunction);
 		if (executeFunction > 0) {
 			System.out.println("Business rule aangemaakt");
 		}
@@ -81,7 +104,6 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		statement.registerOutParameter(1,Types.VARCHAR);
 
 		int executeFunction = statement.executeUpdate();
-		System.out.println(executeFunction);
 		if (executeFunction > 0) {
 			System.out.println("Business rule aangemaakt");
 		}
@@ -104,7 +126,6 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		statement.registerOutParameter(1,Types.VARCHAR);
 
 		int executeFunction = statement.executeUpdate();
-		System.out.println(executeFunction);
 		if (executeFunction > 0) {
 			System.out.println("Business rule aangemaakt");
 		}
@@ -128,7 +149,6 @@ public class BusinessRuleDaoImpl extends BaseDao implements BusinessRuleDao{
 		statement.registerOutParameter(1,Types.VARCHAR);
 
 		int executeFunction = statement.executeUpdate();
-		System.out.println(executeFunction);
 		if (executeFunction > 0) {
 			System.out.println("Business rule aangemaakt");
 		}
